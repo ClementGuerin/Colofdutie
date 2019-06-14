@@ -95,7 +95,7 @@ Player.prototype = {
   },
   _initCamera: function (scene, canvas) {
     // On crée la caméra
-    this.camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(100, 100, 20), scene);
+    this.camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0, 5, 0), scene);
 
     // Axe de mouvement X et Z
     this.camera.keysUp = [90];
@@ -127,7 +127,7 @@ Player.prototype = {
     var cameraJump = function () {
       var cam = scene.cameras[0];
       cam.animations = [];
-      var a = new BABYLON.Animation("a", "position.y", 60, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
+      var a = new BABYLON.Animation("a", "position.y", 20, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
 
       // Animation keys
       var keys = [];
@@ -136,11 +136,11 @@ Player.prototype = {
         value: cam.position.y
       });
       keys.push({
-        frame: 20,
-        value: cam.position.y + 30
+        frame: 10,
+        value: cam.position.y + 2
       });
       keys.push({
-        frame: 40,
+        frame: 20,
         value: cam.position.y
       });
       a.setKeys(keys);
@@ -150,7 +150,7 @@ Player.prototype = {
       a.setEasingFunction(easingFunction);
 
       cam.animations.push(a);
-      scene.beginAnimation(cam, 0, 60, false);
+      scene.beginAnimation(cam, 0, 20, false);
     }
 
     this.camera.attachControl(canvas, false);
