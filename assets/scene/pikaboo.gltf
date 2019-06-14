@@ -5,8 +5,8 @@
   },
   "buffers": [
     {
-      "byteLength": 1672,
-      "uri": "fiif.bin"
+      "byteLength": 5320,
+      "uri": "pikaboo.bin"
     }
   ],
   "nodes": [
@@ -21,8 +21,83 @@
       ]
     },
     {
-      "name": "SkyBox",
+      "name": "panneau",
+      "translation": [
+        -5,
+        8.991146609155447,
+        -0.2
+      ],
+      "scale": [
+        3,
+        1,
+        0.15
+      ],
       "mesh": 1,
+      "rotation": [
+        0,
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "panneau Cloned",
+      "translation": [
+        -5,
+        9,
+        0.2
+      ],
+      "scale": [
+        3,
+        1,
+        0.15
+      ],
+      "rotation": [
+        0,
+        0.0007963267107332633,
+        0,
+        0.9999996829318346
+      ],
+      "mesh": 2
+    },
+    {
+      "name": "poteau bois 1",
+      "scale": [
+        0.2,
+        3,
+        0.2
+      ],
+      "mesh": 3,
+      "rotation": [
+        0,
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "poteau bois 2",
+      "translation": [
+        -10,
+        0,
+        0
+      ],
+      "scale": [
+        0.2,
+        3,
+        0.2
+      ],
+      "mesh": 4,
+      "rotation": [
+        0,
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "SkyBox",
+      "mesh": 5,
       "rotation": [
         0,
         1,
@@ -42,7 +117,7 @@
         1,
         1
       ],
-      "mesh": 2,
+      "mesh": 6,
       "rotation": [
         0,
         1,
@@ -62,13 +137,13 @@
         1,
         1
       ],
-      "mesh": 3,
       "rotation": [
         0,
-        1,
+        -0.004203660824688264,
         0,
-        0
-      ]
+        0.9999911645788033
+      ],
+      "mesh": 7
     },
     {
       "name": "Wall3",
@@ -86,9 +161,9 @@
         0,
         0.6967067093471654,
         0,
-        0.7173560908995228
+        -0.7173560908995228
       ],
-      "mesh": 4
+      "mesh": 8
     },
     {
       "name": "Wall4",
@@ -108,7 +183,7 @@
         0,
         0.7173560908995228
       ],
-      "mesh": 5
+      "mesh": 9
     }
   ],
   "meshes": [
@@ -134,7 +209,7 @@
             "TEXCOORD_0": 6
           },
           "indices": 7,
-          "material": 2
+          "material": 4
         }
       ]
     },
@@ -147,7 +222,7 @@
             "TEXCOORD_0": 10
           },
           "indices": 11,
-          "material": 0
+          "material": 4
         }
       ]
     },
@@ -160,7 +235,7 @@
             "TEXCOORD_0": 14
           },
           "indices": 15,
-          "material": 0
+          "material": 3
         }
       ]
     },
@@ -173,7 +248,7 @@
             "TEXCOORD_0": 18
           },
           "indices": 19,
-          "material": 0
+          "material": 3
         }
       ]
     },
@@ -186,6 +261,58 @@
             "TEXCOORD_0": 22
           },
           "indices": 23,
+          "material": 2
+        }
+      ]
+    },
+    {
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 24,
+            "NORMAL": 25,
+            "TEXCOORD_0": 26
+          },
+          "indices": 27,
+          "material": 0
+        }
+      ]
+    },
+    {
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 28,
+            "NORMAL": 29,
+            "TEXCOORD_0": 30
+          },
+          "indices": 31,
+          "material": 0
+        }
+      ]
+    },
+    {
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 32,
+            "NORMAL": 33,
+            "TEXCOORD_0": 34
+          },
+          "indices": 35,
+          "material": 0
+        }
+      ]
+    },
+    {
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 36,
+            "NORMAL": 37,
+            "TEXCOORD_0": 38
+          },
+          "indices": 39,
           "material": 0
         }
       ]
@@ -199,7 +326,11 @@
         2,
         3,
         4,
-        5
+        5,
+        6,
+        7,
+        8,
+        9
       ]
     }
   ],
@@ -235,135 +366,243 @@
       "buffer": 0,
       "byteLength": 288,
       "byteOffset": 152,
-      "name": "position - SkyBox",
+      "name": "position - panneau",
       "byteStride": 12
     },
     {
       "buffer": 0,
       "byteLength": 288,
       "byteOffset": 440,
-      "name": "normal - SkyBox",
+      "name": "normal - panneau",
       "byteStride": 12
     },
     {
       "buffer": 0,
       "byteLength": 192,
       "byteOffset": 728,
-      "name": "uv - SkyBox",
+      "name": "uv - panneau",
       "byteStride": 8
     },
     {
       "buffer": 0,
       "byteLength": 144,
       "byteOffset": 920,
+      "name": "Indices - panneau"
+    },
+    {
+      "buffer": 0,
+      "byteLength": 288,
+      "byteOffset": 1064,
+      "name": "position - panneau Cloned",
+      "byteStride": 12
+    },
+    {
+      "buffer": 0,
+      "byteLength": 288,
+      "byteOffset": 1352,
+      "name": "normal - panneau Cloned",
+      "byteStride": 12
+    },
+    {
+      "buffer": 0,
+      "byteLength": 192,
+      "byteOffset": 1640,
+      "name": "uv - panneau Cloned",
+      "byteStride": 8
+    },
+    {
+      "buffer": 0,
+      "byteLength": 144,
+      "byteOffset": 1832,
+      "name": "Indices - panneau Cloned"
+    },
+    {
+      "buffer": 0,
+      "byteLength": 288,
+      "byteOffset": 1976,
+      "name": "position - poteau bois 1",
+      "byteStride": 12
+    },
+    {
+      "buffer": 0,
+      "byteLength": 288,
+      "byteOffset": 2264,
+      "name": "normal - poteau bois 1",
+      "byteStride": 12
+    },
+    {
+      "buffer": 0,
+      "byteLength": 192,
+      "byteOffset": 2552,
+      "name": "uv - poteau bois 1",
+      "byteStride": 8
+    },
+    {
+      "buffer": 0,
+      "byteLength": 144,
+      "byteOffset": 2744,
+      "name": "Indices - poteau bois 1"
+    },
+    {
+      "buffer": 0,
+      "byteLength": 288,
+      "byteOffset": 2888,
+      "name": "position - poteau bois 2",
+      "byteStride": 12
+    },
+    {
+      "buffer": 0,
+      "byteLength": 288,
+      "byteOffset": 3176,
+      "name": "normal - poteau bois 2",
+      "byteStride": 12
+    },
+    {
+      "buffer": 0,
+      "byteLength": 192,
+      "byteOffset": 3464,
+      "name": "uv - poteau bois 2",
+      "byteStride": 8
+    },
+    {
+      "buffer": 0,
+      "byteLength": 144,
+      "byteOffset": 3656,
+      "name": "Indices - poteau bois 2"
+    },
+    {
+      "buffer": 0,
+      "byteLength": 288,
+      "byteOffset": 3800,
+      "name": "position - SkyBox",
+      "byteStride": 12
+    },
+    {
+      "buffer": 0,
+      "byteLength": 288,
+      "byteOffset": 4088,
+      "name": "normal - SkyBox",
+      "byteStride": 12
+    },
+    {
+      "buffer": 0,
+      "byteLength": 192,
+      "byteOffset": 4376,
+      "name": "uv - SkyBox",
+      "byteStride": 8
+    },
+    {
+      "buffer": 0,
+      "byteLength": 144,
+      "byteOffset": 4568,
       "name": "Indices - SkyBox"
     },
     {
       "buffer": 0,
       "byteLength": 48,
-      "byteOffset": 1064,
+      "byteOffset": 4712,
       "name": "position - Wall1",
       "byteStride": 12
     },
     {
       "buffer": 0,
       "byteLength": 48,
-      "byteOffset": 1112,
+      "byteOffset": 4760,
       "name": "normal - Wall1",
       "byteStride": 12
     },
     {
       "buffer": 0,
       "byteLength": 32,
-      "byteOffset": 1160,
+      "byteOffset": 4808,
       "name": "uv - Wall1",
       "byteStride": 8
     },
     {
       "buffer": 0,
       "byteLength": 24,
-      "byteOffset": 1192,
+      "byteOffset": 4840,
       "name": "Indices - Wall1"
     },
     {
       "buffer": 0,
       "byteLength": 48,
-      "byteOffset": 1216,
+      "byteOffset": 4864,
       "name": "position - Wall2",
       "byteStride": 12
     },
     {
       "buffer": 0,
       "byteLength": 48,
-      "byteOffset": 1264,
+      "byteOffset": 4912,
       "name": "normal - Wall2",
       "byteStride": 12
     },
     {
       "buffer": 0,
       "byteLength": 32,
-      "byteOffset": 1312,
+      "byteOffset": 4960,
       "name": "uv - Wall2",
       "byteStride": 8
     },
     {
       "buffer": 0,
       "byteLength": 24,
-      "byteOffset": 1344,
+      "byteOffset": 4992,
       "name": "Indices - Wall2"
     },
     {
       "buffer": 0,
       "byteLength": 48,
-      "byteOffset": 1368,
+      "byteOffset": 5016,
       "name": "position - Wall3",
       "byteStride": 12
     },
     {
       "buffer": 0,
       "byteLength": 48,
-      "byteOffset": 1416,
+      "byteOffset": 5064,
       "name": "normal - Wall3",
       "byteStride": 12
     },
     {
       "buffer": 0,
       "byteLength": 32,
-      "byteOffset": 1464,
+      "byteOffset": 5112,
       "name": "uv - Wall3",
       "byteStride": 8
     },
     {
       "buffer": 0,
       "byteLength": 24,
-      "byteOffset": 1496,
+      "byteOffset": 5144,
       "name": "Indices - Wall3"
     },
     {
       "buffer": 0,
       "byteLength": 48,
-      "byteOffset": 1520,
+      "byteOffset": 5168,
       "name": "position - Wall4",
       "byteStride": 12
     },
     {
       "buffer": 0,
       "byteLength": 48,
-      "byteOffset": 1568,
+      "byteOffset": 5216,
       "name": "normal - Wall4",
       "byteStride": 12
     },
     {
       "buffer": 0,
       "byteLength": 32,
-      "byteOffset": 1616,
+      "byteOffset": 5264,
       "name": "uv - Wall4",
       "byteStride": 8
     },
     {
       "buffer": 0,
       "byteLength": 24,
-      "byteOffset": 1648,
+      "byteOffset": 5296,
       "name": "Indices - Wall4"
     }
   ],
@@ -411,8 +650,176 @@
       "byteOffset": 0
     },
     {
-      "name": "position - SkyBox",
+      "name": "position - panneau",
       "bufferView": 4,
+      "componentType": 5126,
+      "count": 24,
+      "type": "VEC3",
+      "min": [
+        -2.5,
+        -2.5,
+        -2.5
+      ],
+      "max": [
+        2.5,
+        2.5,
+        2.5
+      ],
+      "byteOffset": 0
+    },
+    {
+      "name": "normal - panneau",
+      "bufferView": 5,
+      "componentType": 5126,
+      "count": 24,
+      "type": "VEC3",
+      "byteOffset": 0
+    },
+    {
+      "name": "uv - panneau",
+      "bufferView": 6,
+      "componentType": 5126,
+      "count": 24,
+      "type": "VEC2",
+      "byteOffset": 0
+    },
+    {
+      "name": "indices - panneau",
+      "bufferView": 7,
+      "componentType": 5125,
+      "count": 36,
+      "type": "SCALAR",
+      "byteOffset": 0
+    },
+    {
+      "name": "position - panneau Cloned",
+      "bufferView": 8,
+      "componentType": 5126,
+      "count": 24,
+      "type": "VEC3",
+      "min": [
+        -2.5,
+        -2.5,
+        -2.5
+      ],
+      "max": [
+        2.5,
+        2.5,
+        2.5
+      ],
+      "byteOffset": 0
+    },
+    {
+      "name": "normal - panneau Cloned",
+      "bufferView": 9,
+      "componentType": 5126,
+      "count": 24,
+      "type": "VEC3",
+      "byteOffset": 0
+    },
+    {
+      "name": "uv - panneau Cloned",
+      "bufferView": 10,
+      "componentType": 5126,
+      "count": 24,
+      "type": "VEC2",
+      "byteOffset": 0
+    },
+    {
+      "name": "indices - panneau Cloned",
+      "bufferView": 11,
+      "componentType": 5125,
+      "count": 36,
+      "type": "SCALAR",
+      "byteOffset": 0
+    },
+    {
+      "name": "position - poteau bois 1",
+      "bufferView": 12,
+      "componentType": 5126,
+      "count": 24,
+      "type": "VEC3",
+      "min": [
+        -2.5,
+        -2.5,
+        -2.5
+      ],
+      "max": [
+        2.5,
+        2.5,
+        2.5
+      ],
+      "byteOffset": 0
+    },
+    {
+      "name": "normal - poteau bois 1",
+      "bufferView": 13,
+      "componentType": 5126,
+      "count": 24,
+      "type": "VEC3",
+      "byteOffset": 0
+    },
+    {
+      "name": "uv - poteau bois 1",
+      "bufferView": 14,
+      "componentType": 5126,
+      "count": 24,
+      "type": "VEC2",
+      "byteOffset": 0
+    },
+    {
+      "name": "indices - poteau bois 1",
+      "bufferView": 15,
+      "componentType": 5125,
+      "count": 36,
+      "type": "SCALAR",
+      "byteOffset": 0
+    },
+    {
+      "name": "position - poteau bois 2",
+      "bufferView": 16,
+      "componentType": 5126,
+      "count": 24,
+      "type": "VEC3",
+      "min": [
+        -2.5,
+        -2.5,
+        -2.5
+      ],
+      "max": [
+        2.5,
+        2.5,
+        2.5
+      ],
+      "byteOffset": 0
+    },
+    {
+      "name": "normal - poteau bois 2",
+      "bufferView": 17,
+      "componentType": 5126,
+      "count": 24,
+      "type": "VEC3",
+      "byteOffset": 0
+    },
+    {
+      "name": "uv - poteau bois 2",
+      "bufferView": 18,
+      "componentType": 5126,
+      "count": 24,
+      "type": "VEC2",
+      "byteOffset": 0
+    },
+    {
+      "name": "indices - poteau bois 2",
+      "bufferView": 19,
+      "componentType": 5125,
+      "count": 36,
+      "type": "SCALAR",
+      "byteOffset": 0
+    },
+    {
+      "name": "position - SkyBox",
+      "bufferView": 20,
       "componentType": 5126,
       "count": 24,
       "type": "VEC3",
@@ -430,7 +837,7 @@
     },
     {
       "name": "normal - SkyBox",
-      "bufferView": 5,
+      "bufferView": 21,
       "componentType": 5126,
       "count": 24,
       "type": "VEC3",
@@ -438,7 +845,7 @@
     },
     {
       "name": "uv - SkyBox",
-      "bufferView": 6,
+      "bufferView": 22,
       "componentType": 5126,
       "count": 24,
       "type": "VEC2",
@@ -446,7 +853,7 @@
     },
     {
       "name": "indices - SkyBox",
-      "bufferView": 7,
+      "bufferView": 23,
       "componentType": 5125,
       "count": 36,
       "type": "SCALAR",
@@ -454,7 +861,7 @@
     },
     {
       "name": "position - Wall1",
-      "bufferView": 8,
+      "bufferView": 24,
       "componentType": 5126,
       "count": 4,
       "type": "VEC3",
@@ -472,7 +879,7 @@
     },
     {
       "name": "normal - Wall1",
-      "bufferView": 9,
+      "bufferView": 25,
       "componentType": 5126,
       "count": 4,
       "type": "VEC3",
@@ -480,7 +887,7 @@
     },
     {
       "name": "uv - Wall1",
-      "bufferView": 10,
+      "bufferView": 26,
       "componentType": 5126,
       "count": 4,
       "type": "VEC2",
@@ -488,7 +895,7 @@
     },
     {
       "name": "indices - Wall1",
-      "bufferView": 11,
+      "bufferView": 27,
       "componentType": 5125,
       "count": 6,
       "type": "SCALAR",
@@ -496,7 +903,7 @@
     },
     {
       "name": "position - Wall2",
-      "bufferView": 12,
+      "bufferView": 28,
       "componentType": 5126,
       "count": 4,
       "type": "VEC3",
@@ -514,7 +921,7 @@
     },
     {
       "name": "normal - Wall2",
-      "bufferView": 13,
+      "bufferView": 29,
       "componentType": 5126,
       "count": 4,
       "type": "VEC3",
@@ -522,7 +929,7 @@
     },
     {
       "name": "uv - Wall2",
-      "bufferView": 14,
+      "bufferView": 30,
       "componentType": 5126,
       "count": 4,
       "type": "VEC2",
@@ -530,7 +937,7 @@
     },
     {
       "name": "indices - Wall2",
-      "bufferView": 15,
+      "bufferView": 31,
       "componentType": 5125,
       "count": 6,
       "type": "SCALAR",
@@ -538,7 +945,7 @@
     },
     {
       "name": "position - Wall3",
-      "bufferView": 16,
+      "bufferView": 32,
       "componentType": 5126,
       "count": 4,
       "type": "VEC3",
@@ -556,7 +963,7 @@
     },
     {
       "name": "normal - Wall3",
-      "bufferView": 17,
+      "bufferView": 33,
       "componentType": 5126,
       "count": 4,
       "type": "VEC3",
@@ -564,7 +971,7 @@
     },
     {
       "name": "uv - Wall3",
-      "bufferView": 18,
+      "bufferView": 34,
       "componentType": 5126,
       "count": 4,
       "type": "VEC2",
@@ -572,7 +979,7 @@
     },
     {
       "name": "indices - Wall3",
-      "bufferView": 19,
+      "bufferView": 35,
       "componentType": 5125,
       "count": 6,
       "type": "SCALAR",
@@ -580,7 +987,7 @@
     },
     {
       "name": "position - Wall4",
-      "bufferView": 20,
+      "bufferView": 36,
       "componentType": 5126,
       "count": 4,
       "type": "VEC3",
@@ -598,7 +1005,7 @@
     },
     {
       "name": "normal - Wall4",
-      "bufferView": 21,
+      "bufferView": 37,
       "componentType": 5126,
       "count": 4,
       "type": "VEC3",
@@ -606,7 +1013,7 @@
     },
     {
       "name": "uv - Wall4",
-      "bufferView": 22,
+      "bufferView": 38,
       "componentType": 5126,
       "count": 4,
       "type": "VEC2",
@@ -614,7 +1021,7 @@
     },
     {
       "name": "indices - Wall4",
-      "bufferView": 23,
+      "bufferView": 39,
       "componentType": 5125,
       "count": 6,
       "type": "SCALAR",
@@ -669,7 +1076,41 @@
         "metallicFactor": 0,
         "roughnessFactor": 0.3288090062081349,
         "baseColorTexture": {
+          "index": 3,
+          "texCoord": 0
+        }
+      }
+    },
+    {
+      "name": "wood",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.5,
+          0.5,
+          0.5,
+          1
+        ],
+        "metallicFactor": 0,
+        "roughnessFactor": 0.10040241232625771,
+        "baseColorTexture": {
           "index": 0,
+          "texCoord": 0
+        }
+      }
+    },
+    {
+      "name": "panneau1",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.5,
+          0.5,
+          0.5,
+          1
+        ],
+        "metallicFactor": 0,
+        "roughnessFactor": 0.10040241232625771,
+        "baseColorTexture": {
+          "index": 4,
           "texCoord": 0
         }
       }
@@ -678,7 +1119,7 @@
   "textures": [
     {
       "source": 0,
-      "name": "cloudpt.png",
+      "name": "wooden-plank-textured-background-material_53876-33591.jpg",
       "sampler": 0
     },
     {
@@ -690,6 +1131,16 @@
       "source": 2,
       "name": "Dirt cracked 00 seamless.jpg",
       "sampler": 0
+    },
+    {
+      "source": 3,
+      "name": "cloudpt.png",
+      "sampler": 0
+    },
+    {
+      "source": 4,
+      "name": "Screenshot_234.png",
+      "sampler": 0
     }
   ],
   "samplers": [
@@ -700,8 +1151,8 @@
   ],
   "images": [
     {
-      "name": "cloudpt.png",
-      "uri": "cloudpt.png.png"
+      "name": "wooden-plank-textured-background-material_53876-33591.jpg",
+      "uri": "wooden-plank-textured-background-material_53876-33591.jpg.png"
     },
     {
       "name": "Snapchat-740062582.jpg",
@@ -710,6 +1161,14 @@
     {
       "name": "Dirt cracked 00 seamless.jpg",
       "uri": "Dirt cracked 00 seamless.jpg.png"
+    },
+    {
+      "name": "cloudpt.png",
+      "uri": "cloudpt.png.png"
+    },
+    {
+      "name": "Screenshot_234.png",
+      "uri": "Screenshot_234.png.png"
     }
   ]
 }
