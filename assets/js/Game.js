@@ -12,7 +12,7 @@ Game = function (canvasId) {
 
   // Init scene
   this.scene = this._initScene(engine);
-  BABYLON.SceneLoader.Append("./assets/scene/", "pikaboo.gltf", this.scene, function (scene) {
+  BABYLON.SceneLoader.Append("./assets/scene/test/", "test.gltf", this.scene, function (scene) {
     // Init Arena.js
     var _arena = new Arena(_this);
     // Collision

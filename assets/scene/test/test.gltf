@@ -1,0 +1,876 @@
+{
+  "asset": {
+    "generator": "BabylonJS",
+    "version": "2.0"
+  },
+  "buffers": [
+    {
+      "byteLength": 64136,
+      "uri": "test.bin"
+    }
+  ],
+  "nodes": [
+    {
+      "name": "SkyBox",
+      "mesh": 0,
+      "rotation": [
+        0,
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "WoodGround1",
+      "mesh": 1,
+      "rotation": [
+        0,
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Ceil",
+      "translation": [
+        0,
+        15,
+        0
+      ],
+      "scale": [
+        3.13,
+        6.26,
+        1
+      ],
+      "rotation": [
+        0,
+        -0.702713076773554,
+        0.7114733527908444,
+        0
+      ],
+      "mesh": 2
+    },
+    {
+      "name": "Wall left",
+      "translation": [
+        -50,
+        7,
+        0
+      ],
+      "scale": [
+        0.1,
+        4,
+        40
+      ],
+      "mesh": 3,
+      "rotation": [
+        0,
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Wall right",
+      "translation": [
+        50,
+        7,
+        0
+      ],
+      "scale": [
+        0.1,
+        4,
+        40
+      ],
+      "mesh": 4,
+      "rotation": [
+        0,
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Wall front",
+      "translation": [
+        0,
+        7,
+        99.34
+      ],
+      "scale": [
+        0.1,
+        4,
+        20
+      ],
+      "rotation": [
+        0,
+        0.7073882691671998,
+        0,
+        -0.706825181105366
+      ],
+      "mesh": 5
+    },
+    {
+      "name": "Wall back",
+      "translation": [
+        0,
+        7,
+        -100
+      ],
+      "scale": [
+        0.1,
+        4,
+        20
+      ],
+      "rotation": [
+        0,
+        0.7073882691671998,
+        0,
+        0.706825181105366
+      ],
+      "mesh": 6
+    }
+  ],
+  "meshes": [
+    {
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 0,
+            "NORMAL": 1,
+            "TEXCOORD_0": 2
+          },
+          "indices": 3,
+          "material": 2
+        }
+      ]
+    },
+    {
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 4,
+            "NORMAL": 5,
+            "TEXCOORD_0": 6
+          },
+          "indices": 7,
+          "material": 0
+        }
+      ]
+    },
+    {
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 8,
+            "NORMAL": 9,
+            "TEXCOORD_0": 10
+          },
+          "indices": 11,
+          "material": 3
+        }
+      ]
+    },
+    {
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 12,
+            "NORMAL": 13,
+            "TEXCOORD_0": 14
+          },
+          "indices": 15,
+          "material": 3
+        }
+      ]
+    },
+    {
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 16,
+            "NORMAL": 17,
+            "TEXCOORD_0": 18
+          },
+          "indices": 19,
+          "material": 3
+        }
+      ]
+    },
+    {
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 20,
+            "NORMAL": 21,
+            "TEXCOORD_0": 22
+          },
+          "indices": 23,
+          "material": 3
+        }
+      ]
+    },
+    {
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 24,
+            "NORMAL": 25,
+            "TEXCOORD_0": 26
+          },
+          "indices": 27,
+          "material": 3
+        }
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "nodes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    }
+  ],
+  "scene": 0,
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 288,
+      "name": "position - SkyBox",
+      "byteStride": 12
+    },
+    {
+      "buffer": 0,
+      "byteLength": 288,
+      "byteOffset": 288,
+      "name": "normal - SkyBox",
+      "byteStride": 12
+    },
+    {
+      "buffer": 0,
+      "byteLength": 192,
+      "byteOffset": 576,
+      "name": "uv - SkyBox",
+      "byteStride": 8
+    },
+    {
+      "buffer": 0,
+      "byteLength": 144,
+      "byteOffset": 768,
+      "name": "Indices - SkyBox"
+    },
+    {
+      "buffer": 0,
+      "byteLength": 13068,
+      "byteOffset": 912,
+      "name": "position - WoodGround1",
+      "byteStride": 12
+    },
+    {
+      "buffer": 0,
+      "byteLength": 13068,
+      "byteOffset": 13980,
+      "name": "normal - WoodGround1",
+      "byteStride": 12
+    },
+    {
+      "buffer": 0,
+      "byteLength": 8712,
+      "byteOffset": 27048,
+      "name": "uv - WoodGround1",
+      "byteStride": 8
+    },
+    {
+      "buffer": 0,
+      "byteLength": 24576,
+      "byteOffset": 35760,
+      "name": "Indices - WoodGround1"
+    },
+    {
+      "buffer": 0,
+      "byteLength": 48,
+      "byteOffset": 60336,
+      "name": "position - Ceil",
+      "byteStride": 12
+    },
+    {
+      "buffer": 0,
+      "byteLength": 48,
+      "byteOffset": 60384,
+      "name": "normal - Ceil",
+      "byteStride": 12
+    },
+    {
+      "buffer": 0,
+      "byteLength": 32,
+      "byteOffset": 60432,
+      "name": "uv - Ceil",
+      "byteStride": 8
+    },
+    {
+      "buffer": 0,
+      "byteLength": 24,
+      "byteOffset": 60464,
+      "name": "Indices - Ceil"
+    },
+    {
+      "buffer": 0,
+      "byteLength": 288,
+      "byteOffset": 60488,
+      "name": "position - Wall left",
+      "byteStride": 12
+    },
+    {
+      "buffer": 0,
+      "byteLength": 288,
+      "byteOffset": 60776,
+      "name": "normal - Wall left",
+      "byteStride": 12
+    },
+    {
+      "buffer": 0,
+      "byteLength": 192,
+      "byteOffset": 61064,
+      "name": "uv - Wall left",
+      "byteStride": 8
+    },
+    {
+      "buffer": 0,
+      "byteLength": 144,
+      "byteOffset": 61256,
+      "name": "Indices - Wall left"
+    },
+    {
+      "buffer": 0,
+      "byteLength": 288,
+      "byteOffset": 61400,
+      "name": "position - Wall right",
+      "byteStride": 12
+    },
+    {
+      "buffer": 0,
+      "byteLength": 288,
+      "byteOffset": 61688,
+      "name": "normal - Wall right",
+      "byteStride": 12
+    },
+    {
+      "buffer": 0,
+      "byteLength": 192,
+      "byteOffset": 61976,
+      "name": "uv - Wall right",
+      "byteStride": 8
+    },
+    {
+      "buffer": 0,
+      "byteLength": 144,
+      "byteOffset": 62168,
+      "name": "Indices - Wall right"
+    },
+    {
+      "buffer": 0,
+      "byteLength": 288,
+      "byteOffset": 62312,
+      "name": "position - Wall front",
+      "byteStride": 12
+    },
+    {
+      "buffer": 0,
+      "byteLength": 288,
+      "byteOffset": 62600,
+      "name": "normal - Wall front",
+      "byteStride": 12
+    },
+    {
+      "buffer": 0,
+      "byteLength": 192,
+      "byteOffset": 62888,
+      "name": "uv - Wall front",
+      "byteStride": 8
+    },
+    {
+      "buffer": 0,
+      "byteLength": 144,
+      "byteOffset": 63080,
+      "name": "Indices - Wall front"
+    },
+    {
+      "buffer": 0,
+      "byteLength": 288,
+      "byteOffset": 63224,
+      "name": "position - Wall back",
+      "byteStride": 12
+    },
+    {
+      "buffer": 0,
+      "byteLength": 288,
+      "byteOffset": 63512,
+      "name": "normal - Wall back",
+      "byteStride": 12
+    },
+    {
+      "buffer": 0,
+      "byteLength": 192,
+      "byteOffset": 63800,
+      "name": "uv - Wall back",
+      "byteStride": 8
+    },
+    {
+      "buffer": 0,
+      "byteLength": 144,
+      "byteOffset": 63992,
+      "name": "Indices - Wall back"
+    }
+  ],
+  "accessors": [
+    {
+      "name": "position - SkyBox",
+      "bufferView": 0,
+      "componentType": 5126,
+      "count": 24,
+      "type": "VEC3",
+      "min": [
+        -2500,
+        -2500,
+        -2500
+      ],
+      "max": [
+        2500,
+        2500,
+        2500
+      ],
+      "byteOffset": 0
+    },
+    {
+      "name": "normal - SkyBox",
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 24,
+      "type": "VEC3",
+      "byteOffset": 0
+    },
+    {
+      "name": "uv - SkyBox",
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 24,
+      "type": "VEC2",
+      "byteOffset": 0
+    },
+    {
+      "name": "indices - SkyBox",
+      "bufferView": 3,
+      "componentType": 5125,
+      "count": 36,
+      "type": "SCALAR",
+      "byteOffset": 0
+    },
+    {
+      "name": "position - WoodGround1",
+      "bufferView": 4,
+      "componentType": 5126,
+      "count": 1089,
+      "type": "VEC3",
+      "min": [
+        -50,
+        0,
+        -100
+      ],
+      "max": [
+        50,
+        0,
+        100
+      ],
+      "byteOffset": 0
+    },
+    {
+      "name": "normal - WoodGround1",
+      "bufferView": 5,
+      "componentType": 5126,
+      "count": 1089,
+      "type": "VEC3",
+      "byteOffset": 0
+    },
+    {
+      "name": "uv - WoodGround1",
+      "bufferView": 6,
+      "componentType": 5126,
+      "count": 1089,
+      "type": "VEC2",
+      "byteOffset": 0
+    },
+    {
+      "name": "indices - WoodGround1",
+      "bufferView": 7,
+      "componentType": 5125,
+      "count": 6144,
+      "type": "SCALAR",
+      "byteOffset": 0
+    },
+    {
+      "name": "position - Ceil",
+      "bufferView": 8,
+      "componentType": 5126,
+      "count": 4,
+      "type": "VEC3",
+      "min": [
+        -16,
+        -16,
+        0
+      ],
+      "max": [
+        16,
+        16,
+        0
+      ],
+      "byteOffset": 0
+    },
+    {
+      "name": "normal - Ceil",
+      "bufferView": 9,
+      "componentType": 5126,
+      "count": 4,
+      "type": "VEC3",
+      "byteOffset": 0
+    },
+    {
+      "name": "uv - Ceil",
+      "bufferView": 10,
+      "componentType": 5126,
+      "count": 4,
+      "type": "VEC2",
+      "byteOffset": 0
+    },
+    {
+      "name": "indices - Ceil",
+      "bufferView": 11,
+      "componentType": 5125,
+      "count": 6,
+      "type": "SCALAR",
+      "byteOffset": 0
+    },
+    {
+      "name": "position - Wall left",
+      "bufferView": 12,
+      "componentType": 5126,
+      "count": 24,
+      "type": "VEC3",
+      "min": [
+        -2.5,
+        -2.5,
+        -2.5
+      ],
+      "max": [
+        2.5,
+        2.5,
+        2.5
+      ],
+      "byteOffset": 0
+    },
+    {
+      "name": "normal - Wall left",
+      "bufferView": 13,
+      "componentType": 5126,
+      "count": 24,
+      "type": "VEC3",
+      "byteOffset": 0
+    },
+    {
+      "name": "uv - Wall left",
+      "bufferView": 14,
+      "componentType": 5126,
+      "count": 24,
+      "type": "VEC2",
+      "byteOffset": 0
+    },
+    {
+      "name": "indices - Wall left",
+      "bufferView": 15,
+      "componentType": 5125,
+      "count": 36,
+      "type": "SCALAR",
+      "byteOffset": 0
+    },
+    {
+      "name": "position - Wall right",
+      "bufferView": 16,
+      "componentType": 5126,
+      "count": 24,
+      "type": "VEC3",
+      "min": [
+        -2.5,
+        -2.5,
+        -2.5
+      ],
+      "max": [
+        2.5,
+        2.5,
+        2.5
+      ],
+      "byteOffset": 0
+    },
+    {
+      "name": "normal - Wall right",
+      "bufferView": 17,
+      "componentType": 5126,
+      "count": 24,
+      "type": "VEC3",
+      "byteOffset": 0
+    },
+    {
+      "name": "uv - Wall right",
+      "bufferView": 18,
+      "componentType": 5126,
+      "count": 24,
+      "type": "VEC2",
+      "byteOffset": 0
+    },
+    {
+      "name": "indices - Wall right",
+      "bufferView": 19,
+      "componentType": 5125,
+      "count": 36,
+      "type": "SCALAR",
+      "byteOffset": 0
+    },
+    {
+      "name": "position - Wall front",
+      "bufferView": 20,
+      "componentType": 5126,
+      "count": 24,
+      "type": "VEC3",
+      "min": [
+        -2.5,
+        -2.5,
+        -2.5
+      ],
+      "max": [
+        2.5,
+        2.5,
+        2.5
+      ],
+      "byteOffset": 0
+    },
+    {
+      "name": "normal - Wall front",
+      "bufferView": 21,
+      "componentType": 5126,
+      "count": 24,
+      "type": "VEC3",
+      "byteOffset": 0
+    },
+    {
+      "name": "uv - Wall front",
+      "bufferView": 22,
+      "componentType": 5126,
+      "count": 24,
+      "type": "VEC2",
+      "byteOffset": 0
+    },
+    {
+      "name": "indices - Wall front",
+      "bufferView": 23,
+      "componentType": 5125,
+      "count": 36,
+      "type": "SCALAR",
+      "byteOffset": 0
+    },
+    {
+      "name": "position - Wall back",
+      "bufferView": 24,
+      "componentType": 5126,
+      "count": 24,
+      "type": "VEC3",
+      "min": [
+        -2.5,
+        -2.5,
+        -2.5
+      ],
+      "max": [
+        2.5,
+        2.5,
+        2.5
+      ],
+      "byteOffset": 0
+    },
+    {
+      "name": "normal - Wall back",
+      "bufferView": 25,
+      "componentType": 5126,
+      "count": 24,
+      "type": "VEC3",
+      "byteOffset": 0
+    },
+    {
+      "name": "uv - Wall back",
+      "bufferView": 26,
+      "componentType": 5126,
+      "count": 24,
+      "type": "VEC2",
+      "byteOffset": 0
+    },
+    {
+      "name": "indices - Wall back",
+      "bufferView": 27,
+      "componentType": 5125,
+      "count": 36,
+      "type": "SCALAR",
+      "byteOffset": 0
+    }
+  ],
+  "materials": [
+    {
+      "name": "Wood",
+      "doubleSided": true,
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.5,
+          0.5,
+          0.5,
+          1
+        ],
+        "metallicFactor": 0,
+        "roughnessFactor": 0.2994934128236479,
+        "baseColorTexture": {
+          "index": 3,
+          "texCoord": 0
+        }
+      },
+      "normalTexture": {
+        "index": 2,
+        "texCoord": 0
+      }
+    },
+    {
+      "name": "default material",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.5,
+          0.5,
+          0.5,
+          1
+        ],
+        "metallicFactor": 0,
+        "roughnessFactor": 0.3288090062081349
+      }
+    },
+    {
+      "name": "Sky",
+      "emissiveFactor": [
+        1,
+        1,
+        1
+      ],
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.5,
+          0.5,
+          0.5,
+          1
+        ],
+        "metallicFactor": 0,
+        "roughnessFactor": 0.3288090062081349,
+        "baseColorTexture": {
+          "index": 0,
+          "texCoord": 0
+        }
+      },
+      "emissiveTexture": {
+        "index": 1,
+        "texCoord": 0
+      }
+    },
+    {
+      "name": "Concrete",
+      "doubleSided": true,
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.5,
+          0.5,
+          0.5,
+          1
+        ],
+        "metallicFactor": 0,
+        "roughnessFactor": 0.2994934128236479,
+        "baseColorTexture": {
+          "index": 4,
+          "texCoord": 0
+        }
+      },
+      "normalTexture": {
+        "index": 5,
+        "texCoord": 0
+      }
+    }
+  ],
+  "textures": [
+    {
+      "source": 0,
+      "name": "skyisthelimit.jpg",
+      "sampler": 0
+    },
+    {
+      "source": 1,
+      "name": "skyisthelimit.jpg",
+      "sampler": 0
+    },
+    {
+      "source": 2,
+      "name": "hardwood-brown-planks-normal-dx.png",
+      "sampler": 0
+    },
+    {
+      "source": 3,
+      "name": "hardwood-brown-planks-albedo.png",
+      "sampler": 0
+    },
+    {
+      "source": 4,
+      "name": "patchy_cement1_Base_Color.png",
+      "sampler": 0
+    },
+    {
+      "source": 5,
+      "name": "patchy_cement1_Normal.png",
+      "sampler": 0
+    }
+  ],
+  "samplers": [
+    {
+      "magFilter": 9729,
+      "minFilter": 9987
+    }
+  ],
+  "images": [
+    {
+      "name": "skyisthelimit.jpg",
+      "uri": "skyisthelimit.jpg.png"
+    },
+    {
+      "name": "skyisthelimit.jpg",
+      "uri": "skyisthelimit.jpg_ead8b43c-b8f9-4443-8ce1-892ff38e5a8e.png"
+    },
+    {
+      "name": "hardwood-brown-planks-normal-dx.png",
+      "uri": "hardwood-brown-planks-normal-dx.png.png"
+    },
+    {
+      "name": "hardwood-brown-planks-albedo.png",
+      "uri": "hardwood-brown-planks-albedo.png.png"
+    },
+    {
+      "name": "patchy_cement1_Base_Color.png",
+      "uri": "patchy_cement1_Base_Color.png.png"
+    },
+    {
+      "name": "patchy_cement1_Normal.png",
+      "uri": "patchy_cement1_Normal.png.png"
+    }
+  ]
+}
