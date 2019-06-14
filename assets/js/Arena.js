@@ -4,7 +4,8 @@ Arena = function (game) {
   var scene = game.scene;
 
   // Create main light
-  var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0, 1, 0), scene);
+  var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(1, 10, 10), scene);
+  light.intensity = 1;
 
   /*
   // Create sphere

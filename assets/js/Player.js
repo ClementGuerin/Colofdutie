@@ -95,7 +95,8 @@ Player.prototype = {
   },
   _initCamera: function (scene, canvas) {
     // On crée la caméra
-    this.camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0, 5, 0), scene);
+    this.camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0, 2, 20), scene);
+    this.camera.setTarget(BABYLON.Vector3.Zero());
 
     // Axe de mouvement X et Z
     this.camera.keysUp = [90];
