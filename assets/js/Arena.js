@@ -6,6 +6,7 @@ Arena = function (game) {
   // Create main light
   var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0, 1, 0), scene);
 
+  /*
   // Create sphere
   var sphere = BABYLON.Mesh.CreateSphere('sphere1', 16, 2, scene);
   sphere.position.y = 1;
@@ -49,6 +50,6 @@ Arena = function (game) {
   cylinder.position.y = 20 / 2;
 
   // Cylinder texture
-  cylinder.material = materialBox;
+  cylinder.material = materialBox; */
 
 }
