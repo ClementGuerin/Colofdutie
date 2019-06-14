@@ -8,7 +8,6 @@ Game = function (canvasId) {
   var canvas = document.getElementById(canvasId);
   var engine = new BABYLON.Engine(canvas, true);
   var _this = this;
-  _this.actualTime = Date.now();
 
   // Init scene
   this.scene = this._initScene(engine);

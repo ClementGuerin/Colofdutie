@@ -19,7 +19,7 @@ Arena = function (game) {
   materialGround.diffuseTexture.uScale = 4.0;
   materialGround.diffuseTexture.vScale = 4.0;
   ground.material = materialGround;
-
+*/
   // Create cube
   var mainBox = BABYLON.Mesh.CreateBox("box1", 20, scene);
   mainBox.scaling.y = 200;
@@ -27,7 +27,7 @@ Arena = function (game) {
   mainBox.position = new BABYLON.Vector3(55, 1, 55);
   mainBox.rotation.y = (Math.PI * 45) / 180;
   mainBox.checkCollisions = true;
-
+  /*
     // Cube texture
     var materialBox = new BABYLON.StandardMaterial("boxTexture", scene);
     materialBox.diffuseTexture = new BABYLON.Texture("assets/images/brick.jpg", scene);

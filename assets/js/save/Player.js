@@ -7,11 +7,11 @@ Player = function (game, canvas) {
 
   _this.angularSensibility = 180;
 
-  /* window.addEventListener("keyup", function (evt) {
+  window.addEventListener("keyup", function (evt) {
 
     switch (evt.keyCode) {
       case 90:
-        console.log('keyup 90');
+        _this.camera.axisMovement[0] = false;
         break;
       case 83:
         _this.camera.axisMovement[1] = false;
@@ -29,7 +29,7 @@ Player = function (game, canvas) {
   window.addEventListener("keydown", function (evt) {
     switch (evt.keyCode) {
       case 90:
-        console.log('keydown 90');
+        _this.camera.axisMovement[0] = true;
         break;
       case 83:
         _this.camera.axisMovement[1] = true;
@@ -41,7 +41,7 @@ Player = function (game, canvas) {
         _this.camera.axisMovement[3] = true;
         break;
     }
-  }, false); */
+  }, false);
 
   window.addEventListener("mousemove", function (evt) {
     if (_this.rotEngaged === true) {
@@ -95,13 +95,10 @@ Player.prototype = {
   },
   _initCamera: function (scene, canvas) {
     // On crée la caméra
-    this.camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(100, 100, 20), scene);
+    this.camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(20, 20, 20), scene);
 
     // Axe de mouvement X et Z
-    this.camera.keysUp = [90];
-    this.camera.keysDown = [83];
-    this.camera.keysLeft = [81];
-    this.camera.keysRight = [68];
+    this.camera.axisMovement = [false, false, false, false];
 
     // Si le joueur est en vie ou non
     this.isAlive = true;
@@ -114,45 +111,29 @@ Player.prototype = {
 
     // Gravity
     this.camera.applyGravity = true;
-
-    // Jump
-    window.addEventListener("keyup", function (e) {
-      switch (event.keyCode) {
-        case 32:
-          cameraJump();
-          break;
-      }
-    }, false);
-
-    var cameraJump = function () {
-      var cam = scene.cameras[0];
-      cam.animations = [];
-      var a = new BABYLON.Animation("a", "position.y", 60, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
-
-      // Animation keys
-      var keys = [];
-      keys.push({
-        frame: 0,
-        value: cam.position.y
-      });
-      keys.push({
-        frame: 20,
-        value: cam.position.y + 30
-      });
-      keys.push({
-        frame: 40,
-        value: cam.position.y
-      });
-      a.setKeys(keys);
-
-      var easingFunction = new BABYLON.CircleEase();
-      easingFunction.setEasingMode(BABYLON.EasingFunction.EASINGMODE_EASEINOUT);
-      a.setEasingFunction(easingFunction);
-
-      cam.animations.push(a);
-      scene.beginAnimation(cam, 0, 60, false);
+  },
+  _checkMove: function (ratioFps) {
+    this.speed = 2.5;
+    let relativeSpeed = this.speed / ratioFps;
+    if (this.camera.axisMovement[0]) {
+      this.camera.position = new BABYLON.Vector3(this.camera.position.x + (Math.sin(this.camera.rotation.y) * relativeSpeed),
+        this.camera.position.y,
+        this.camera.position.z + (Math.cos(this.camera.rotation.y) * relativeSpeed));
     }
-
-    this.camera.attachControl(canvas, false);
+    if (this.camera.axisMovement[1]) {
+      this.camera.position = new BABYLON.Vector3(this.camera.position.x + (Math.sin(this.camera.rotation.y) * -relativeSpeed),
+        this.camera.position.y,
+        this.camera.position.z + (Math.cos(this.camera.rotation.y) * -relativeSpeed));
+    }
+    if (this.camera.axisMovement[2]) {
+      this.camera.position = new BABYLON.Vector3(this.camera.position.x + Math.sin(this.camera.rotation.y + degToRad(-90)) * relativeSpeed,
+        this.camera.position.y,
+        this.camera.position.z + Math.cos(this.camera.rotation.y + degToRad(-90)) * relativeSpeed);
+    }
+    if (this.camera.axisMovement[3]) {
+      this.camera.position = new BABYLON.Vector3(this.camera.position.x + Math.sin(this.camera.rotation.y + degToRad(-90)) * -relativeSpeed,
+        this.camera.position.y,
+        this.camera.position.z + Math.cos(this.camera.rotation.y + degToRad(-90)) * -relativeSpeed);
+    }
   }
 };

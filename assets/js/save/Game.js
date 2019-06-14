@@ -31,6 +31,12 @@ Game = function (canvasId) {
 
   // Permet au jeu de tourner
   engine.runRenderLoop(function () {
+    // Récuperer le ratio par les fps
+    _this.fps = Math.round(1000 / engine.getDeltaTime());
+
+    // Checker le mouvement du joueur en lui envoyant le ratio de déplacement
+    _player._checkMove((_this.fps) / 60);
+
     _this.scene.render();
   });
 
