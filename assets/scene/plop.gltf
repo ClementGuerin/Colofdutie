@@ -1,0 +1,729 @@
+{
+  "asset": {
+    "generator": "BabylonJS",
+    "version": "2.0"
+  },
+  "buffers": [
+    {
+      "byteLength": 7282192,
+      "uri": "plop.bin"
+    }
+  ],
+  "nodes": [
+    {
+      "name": "New Ground",
+      "mesh": 0,
+      "rotation": [
+        0,
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "SkyBox",
+      "mesh": 1,
+      "rotation": [
+        0,
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Wall1",
+      "translation": [
+        0,
+        15,
+        49.459013290237486
+      ],
+      "scale": [
+        3.180000356701578,
+        1,
+        1
+      ],
+      "mesh": 2,
+      "rotation": [
+        0,
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Wall2",
+      "translation": [
+        0,
+        15,
+        -48.28036322303127
+      ],
+      "scale": [
+        3.180000356701578,
+        1,
+        1
+      ],
+      "mesh": 3,
+      "rotation": [
+        0,
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Wall3",
+      "translation": [
+        48.19736150507743,
+        15,
+        1.4079388836160118
+      ],
+      "scale": [
+        3.180000356701578,
+        1,
+        1
+      ],
+      "rotation": [
+        0,
+        0.6967067093471654,
+        0,
+        0.7173560908995228
+      ],
+      "mesh": 4
+    },
+    {
+      "name": "Wall4",
+      "translation": [
+        -48.38391196186605,
+        15,
+        -1.4133883483986678
+      ],
+      "scale": [
+        3.180000356701578,
+        1,
+        1
+      ],
+      "rotation": [
+        0,
+        0.6967067093471654,
+        0,
+        0.7173560908995228
+      ],
+      "mesh": 5
+    }
+  ],
+  "meshes": [
+    {
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 0,
+            "NORMAL": 1,
+            "TEXCOORD_0": 2
+          },
+          "indices": 3,
+          "material": 1
+        }
+      ]
+    },
+    {
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 4,
+            "NORMAL": 5,
+            "TEXCOORD_0": 6
+          },
+          "indices": 7,
+          "material": 2
+        }
+      ]
+    },
+    {
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 8,
+            "NORMAL": 9,
+            "TEXCOORD_0": 10
+          },
+          "indices": 11,
+          "material": 3
+        }
+      ]
+    },
+    {
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 12,
+            "NORMAL": 13,
+            "TEXCOORD_0": 14
+          },
+          "indices": 15,
+          "material": 3
+        }
+      ]
+    },
+    {
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 16,
+            "NORMAL": 17,
+            "TEXCOORD_0": 18
+          },
+          "indices": 19,
+          "material": 3
+        }
+      ]
+    },
+    {
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 20,
+            "NORMAL": 21,
+            "TEXCOORD_0": 22
+          },
+          "indices": 23,
+          "material": 3
+        }
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "nodes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    }
+  ],
+  "scene": 0,
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 1563852,
+      "name": "position - New Ground",
+      "byteStride": 12
+    },
+    {
+      "buffer": 0,
+      "byteLength": 1563852,
+      "byteOffset": 1563852,
+      "name": "normal - New Ground",
+      "byteStride": 12
+    },
+    {
+      "buffer": 0,
+      "byteLength": 1042568,
+      "byteOffset": 3127704,
+      "name": "uv - New Ground",
+      "byteStride": 8
+    },
+    {
+      "buffer": 0,
+      "byteLength": 3110400,
+      "byteOffset": 4170272,
+      "name": "Indices - New Ground"
+    },
+    {
+      "buffer": 0,
+      "byteLength": 288,
+      "byteOffset": 7280672,
+      "name": "position - SkyBox",
+      "byteStride": 12
+    },
+    {
+      "buffer": 0,
+      "byteLength": 288,
+      "byteOffset": 7280960,
+      "name": "normal - SkyBox",
+      "byteStride": 12
+    },
+    {
+      "buffer": 0,
+      "byteLength": 192,
+      "byteOffset": 7281248,
+      "name": "uv - SkyBox",
+      "byteStride": 8
+    },
+    {
+      "buffer": 0,
+      "byteLength": 144,
+      "byteOffset": 7281440,
+      "name": "Indices - SkyBox"
+    },
+    {
+      "buffer": 0,
+      "byteLength": 48,
+      "byteOffset": 7281584,
+      "name": "position - Wall1",
+      "byteStride": 12
+    },
+    {
+      "buffer": 0,
+      "byteLength": 48,
+      "byteOffset": 7281632,
+      "name": "normal - Wall1",
+      "byteStride": 12
+    },
+    {
+      "buffer": 0,
+      "byteLength": 32,
+      "byteOffset": 7281680,
+      "name": "uv - Wall1",
+      "byteStride": 8
+    },
+    {
+      "buffer": 0,
+      "byteLength": 24,
+      "byteOffset": 7281712,
+      "name": "Indices - Wall1"
+    },
+    {
+      "buffer": 0,
+      "byteLength": 48,
+      "byteOffset": 7281736,
+      "name": "position - Wall2",
+      "byteStride": 12
+    },
+    {
+      "buffer": 0,
+      "byteLength": 48,
+      "byteOffset": 7281784,
+      "name": "normal - Wall2",
+      "byteStride": 12
+    },
+    {
+      "buffer": 0,
+      "byteLength": 32,
+      "byteOffset": 7281832,
+      "name": "uv - Wall2",
+      "byteStride": 8
+    },
+    {
+      "buffer": 0,
+      "byteLength": 24,
+      "byteOffset": 7281864,
+      "name": "Indices - Wall2"
+    },
+    {
+      "buffer": 0,
+      "byteLength": 48,
+      "byteOffset": 7281888,
+      "name": "position - Wall3",
+      "byteStride": 12
+    },
+    {
+      "buffer": 0,
+      "byteLength": 48,
+      "byteOffset": 7281936,
+      "name": "normal - Wall3",
+      "byteStride": 12
+    },
+    {
+      "buffer": 0,
+      "byteLength": 32,
+      "byteOffset": 7281984,
+      "name": "uv - Wall3",
+      "byteStride": 8
+    },
+    {
+      "buffer": 0,
+      "byteLength": 24,
+      "byteOffset": 7282016,
+      "name": "Indices - Wall3"
+    },
+    {
+      "buffer": 0,
+      "byteLength": 48,
+      "byteOffset": 7282040,
+      "name": "position - Wall4",
+      "byteStride": 12
+    },
+    {
+      "buffer": 0,
+      "byteLength": 48,
+      "byteOffset": 7282088,
+      "name": "normal - Wall4",
+      "byteStride": 12
+    },
+    {
+      "buffer": 0,
+      "byteLength": 32,
+      "byteOffset": 7282136,
+      "name": "uv - Wall4",
+      "byteStride": 8
+    },
+    {
+      "buffer": 0,
+      "byteLength": 24,
+      "byteOffset": 7282168,
+      "name": "Indices - Wall4"
+    }
+  ],
+  "accessors": [
+    {
+      "name": "position - New Ground",
+      "bufferView": 0,
+      "componentType": 5126,
+      "count": 130321,
+      "type": "VEC3",
+      "min": [
+        -50,
+        0,
+        -50
+      ],
+      "max": [
+        50,
+        0,
+        50
+      ],
+      "byteOffset": 0
+    },
+    {
+      "name": "normal - New Ground",
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 130321,
+      "type": "VEC3",
+      "byteOffset": 0
+    },
+    {
+      "name": "uv - New Ground",
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 130321,
+      "type": "VEC2",
+      "byteOffset": 0
+    },
+    {
+      "name": "indices - New Ground",
+      "bufferView": 3,
+      "componentType": 5125,
+      "count": 777600,
+      "type": "SCALAR",
+      "byteOffset": 0
+    },
+    {
+      "name": "position - SkyBox",
+      "bufferView": 4,
+      "componentType": 5126,
+      "count": 24,
+      "type": "VEC3",
+      "min": [
+        -2500,
+        -2500,
+        -2500
+      ],
+      "max": [
+        2500,
+        2500,
+        2500
+      ],
+      "byteOffset": 0
+    },
+    {
+      "name": "normal - SkyBox",
+      "bufferView": 5,
+      "componentType": 5126,
+      "count": 24,
+      "type": "VEC3",
+      "byteOffset": 0
+    },
+    {
+      "name": "uv - SkyBox",
+      "bufferView": 6,
+      "componentType": 5126,
+      "count": 24,
+      "type": "VEC2",
+      "byteOffset": 0
+    },
+    {
+      "name": "indices - SkyBox",
+      "bufferView": 7,
+      "componentType": 5125,
+      "count": 36,
+      "type": "SCALAR",
+      "byteOffset": 0
+    },
+    {
+      "name": "position - Wall1",
+      "bufferView": 8,
+      "componentType": 5126,
+      "count": 4,
+      "type": "VEC3",
+      "min": [
+        -16,
+        -16,
+        0
+      ],
+      "max": [
+        16,
+        16,
+        0
+      ],
+      "byteOffset": 0
+    },
+    {
+      "name": "normal - Wall1",
+      "bufferView": 9,
+      "componentType": 5126,
+      "count": 4,
+      "type": "VEC3",
+      "byteOffset": 0
+    },
+    {
+      "name": "uv - Wall1",
+      "bufferView": 10,
+      "componentType": 5126,
+      "count": 4,
+      "type": "VEC2",
+      "byteOffset": 0
+    },
+    {
+      "name": "indices - Wall1",
+      "bufferView": 11,
+      "componentType": 5125,
+      "count": 6,
+      "type": "SCALAR",
+      "byteOffset": 0
+    },
+    {
+      "name": "position - Wall2",
+      "bufferView": 12,
+      "componentType": 5126,
+      "count": 4,
+      "type": "VEC3",
+      "min": [
+        -16,
+        -16,
+        0
+      ],
+      "max": [
+        16,
+        16,
+        0
+      ],
+      "byteOffset": 0
+    },
+    {
+      "name": "normal - Wall2",
+      "bufferView": 13,
+      "componentType": 5126,
+      "count": 4,
+      "type": "VEC3",
+      "byteOffset": 0
+    },
+    {
+      "name": "uv - Wall2",
+      "bufferView": 14,
+      "componentType": 5126,
+      "count": 4,
+      "type": "VEC2",
+      "byteOffset": 0
+    },
+    {
+      "name": "indices - Wall2",
+      "bufferView": 15,
+      "componentType": 5125,
+      "count": 6,
+      "type": "SCALAR",
+      "byteOffset": 0
+    },
+    {
+      "name": "position - Wall3",
+      "bufferView": 16,
+      "componentType": 5126,
+      "count": 4,
+      "type": "VEC3",
+      "min": [
+        -16,
+        -16,
+        0
+      ],
+      "max": [
+        16,
+        16,
+        0
+      ],
+      "byteOffset": 0
+    },
+    {
+      "name": "normal - Wall3",
+      "bufferView": 17,
+      "componentType": 5126,
+      "count": 4,
+      "type": "VEC3",
+      "byteOffset": 0
+    },
+    {
+      "name": "uv - Wall3",
+      "bufferView": 18,
+      "componentType": 5126,
+      "count": 4,
+      "type": "VEC2",
+      "byteOffset": 0
+    },
+    {
+      "name": "indices - Wall3",
+      "bufferView": 19,
+      "componentType": 5125,
+      "count": 6,
+      "type": "SCALAR",
+      "byteOffset": 0
+    },
+    {
+      "name": "position - Wall4",
+      "bufferView": 20,
+      "componentType": 5126,
+      "count": 4,
+      "type": "VEC3",
+      "min": [
+        -16,
+        -16,
+        0
+      ],
+      "max": [
+        16,
+        16,
+        0
+      ],
+      "byteOffset": 0
+    },
+    {
+      "name": "normal - Wall4",
+      "bufferView": 21,
+      "componentType": 5126,
+      "count": 4,
+      "type": "VEC3",
+      "byteOffset": 0
+    },
+    {
+      "name": "uv - Wall4",
+      "bufferView": 22,
+      "componentType": 5126,
+      "count": 4,
+      "type": "VEC2",
+      "byteOffset": 0
+    },
+    {
+      "name": "indices - Wall4",
+      "bufferView": 23,
+      "componentType": 5125,
+      "count": 6,
+      "type": "SCALAR",
+      "byteOffset": 0
+    }
+  ],
+  "materials": [
+    {
+      "name": "default material",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.5,
+          0.5,
+          0.5,
+          1
+        ],
+        "metallicFactor": 0,
+        "roughnessFactor": 0.3288090062081349
+      }
+    },
+    {
+      "name": "dirt",
+      "doubleSided": true,
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.5,
+          0.5,
+          0.5,
+          1
+        ],
+        "metallicFactor": 0,
+        "roughnessFactor": 0.10040241232625771,
+        "baseColorTexture": {
+          "index": 1,
+          "texCoord": 0
+        }
+      }
+    },
+    {
+      "name": "sky",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.5,
+          0.5,
+          0.5,
+          1
+        ],
+        "metallicFactor": 0,
+        "roughnessFactor": 0.3288090062081349,
+        "baseColorTexture": {
+          "index": 0,
+          "texCoord": 0
+        }
+      }
+    },
+    {
+      "name": "eldead",
+      "doubleSided": true,
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.5,
+          0.5,
+          0.5,
+          1
+        ],
+        "metallicFactor": 0,
+        "roughnessFactor": 0.10040241232625771,
+        "baseColorTexture": {
+          "index": 2,
+          "texCoord": 0
+        }
+      }
+    }
+  ],
+  "textures": [
+    {
+      "source": 0,
+      "name": "cloudpt.png",
+      "sampler": 0
+    },
+    {
+      "source": 1,
+      "name": "Dirt cracked 00 seamless.jpg",
+      "sampler": 0
+    },
+    {
+      "source": 2,
+      "name": "Snapchat-740062582.jpg",
+      "sampler": 0
+    }
+  ],
+  "samplers": [
+    {
+      "magFilter": 9729,
+      "minFilter": 9987
+    }
+  ],
+  "images": [
+    {
+      "name": "cloudpt.png",
+      "uri": "cloudpt.png.png"
+    },
+    {
+      "name": "Dirt cracked 00 seamless.jpg",
+      "uri": "Dirt cracked 00 seamless.jpg.png"
+    },
+    {
+      "name": "Snapchat-740062582.jpg",
+      "uri": "Snapchat-740062582.jpg.png"
+    }
+  ]
+}
