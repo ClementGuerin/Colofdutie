@@ -115,11 +115,33 @@ Player.prototype = {
     // Gravity
     this.camera.applyGravity = true;
 
-    // Jump
+    // Speed
+    this.camera.speed = 0.4;
+
+    // Jump & Run
+    var canJump = true;
+    var _self = this;
     window.addEventListener("keyup", function (e) {
       switch (event.keyCode) {
         case 32:
-          cameraJump();
+          if (canJump) {
+            cameraJump();
+            canJump = false;
+            let wait = setTimeout(function () {
+              canJump = true;
+            }, 1000)
+          }
+          break;
+        case 16:
+          _self.camera.speed = 0.4;
+          break;
+      }
+    }, false);
+
+    window.addEventListener("keydown", function (e) {
+      switch (event.keyCode) {
+        case 16:
+          _self.camera.speed = 1;
           break;
       }
     }, false);
@@ -127,7 +149,7 @@ Player.prototype = {
     var cameraJump = function () {
       var cam = scene.cameras[0];
       cam.animations = [];
-      var a = new BABYLON.Animation("a", "position.y", 20, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
+      var a = new BABYLON.Animation("a", "position.y", 350, BABYLON.Animation.ANIMATIONTYPE_FLOAT, BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE);
 
       // Animation keys
       var keys = [];
@@ -136,11 +158,11 @@ Player.prototype = {
         value: cam.position.y
       });
       keys.push({
-        frame: 10,
-        value: cam.position.y + 2
+        frame: 50,
+        value: cam.position.y + 5
       });
       keys.push({
-        frame: 20,
+        frame: 300,
         value: cam.position.y
       });
       a.setKeys(keys);
@@ -150,7 +172,7 @@ Player.prototype = {
       a.setEasingFunction(easingFunction);
 
       cam.animations.push(a);
-      scene.beginAnimation(cam, 0, 20, false);
+      scene.beginAnimation(cam, 0, 350, false);
     }
 
     this.camera.attachControl(canvas, false);
