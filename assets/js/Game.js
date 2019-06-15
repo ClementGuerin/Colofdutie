@@ -13,17 +13,14 @@ Game = function (canvasId) {
 
   // Init scene
   this.scene = this._initScene(engine);
+  var _arena = new Arena(_this);
   BABYLON.SceneLoader.Append("./assets/scene/clara/", "test-bordel.babylon", this.scene, function (scene) {
-    // Init Arena.js
-    var _arena = new Arena(_this);
-    // Collision
-    scene.collisionsEnabled = true;
-    scene.checkCollisions = true;
     scene.meshes.forEach(mesh => {
-      mesh.checkCollisions = true;
+      //console.log(mesh);
+      if (mesh.id !== "headMainPlayer" && mesh.id !== "rocketLauncher" && mesh.id !== "hitBoxPlayer") {
+        mesh.checkCollisions = true;
+      }
     });
-
-    scene.clearColor = new BABYLON.Color3(0.650, 0.866, 0.968);
   });
 
   // Init Player.js
@@ -40,8 +37,8 @@ Game = function (canvasId) {
     _this.scene.render();
 
     // Si launchBullets est a true, on tire
-    if (_player.camera._weapons.launchBullets === true) {
-      _player.camera._weapons.launchFire();
+    if (_player.camera.weapons.launchBullets === true) {
+      _player.camera.weapons.launchFire();
     }
   });
 
@@ -57,6 +54,9 @@ Game.prototype = {
   // Prototype d'init scene
   _initScene: function (engine) {
     var scene = new BABYLON.Scene(engine);
+    scene.clearColor = new BABYLON.Color3(0.9, 0.9, 0.9);
+    scene.gravity = new BABYLON.Vector3(0, -9.81, 0);
+    scene.collisionsEnabled = true;
     return scene;
   }
 }

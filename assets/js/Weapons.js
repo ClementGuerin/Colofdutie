@@ -13,7 +13,7 @@ Weapons = function (Player) {
   this.rocketLauncher = this.newWeapon(Player);
 
   // Cadence de tir
-  this.fireRate = 50;
+  this.fireRate = 100;
 
   // Delta de calcul pour savoir quand le tir est a nouveau disponible
   this._deltaFireRate = this.fireRate;
@@ -60,7 +60,6 @@ Weapons.prototype = {
     materialWeapon.backFaceCulling = true;
 
     newWeapon.material = materialWeapon;
-    console.log('plop');
 
     return newWeapon
   },
@@ -81,7 +80,7 @@ Weapons.prototype = {
         direction = direction.normalize();
       }
 
-      this.createRocket(this.Player.camera, direction)
+      this.createRocket(this.Player.camera.playerBox);
       this.canFire = false;
     } else {
       // Nothing to do : cannot fire
@@ -101,7 +100,7 @@ Weapons.prototype = {
       positionValue.y + (newRocket.direction.y * 1),
       positionValue.z + (newRocket.direction.z * 1));
     newRocket.rotation = new BABYLON.Vector3(rotationValue.x, rotationValue.y, rotationValue.z);
-    newRocket.scaling = new BABYLON.Vector3(0.5, 0.5, 1);
+    newRocket.scaling = new BABYLON.Vector3(0.1, 0.1, 01);
     newRocket.isPickable = false;
 
     newRocket.material = new BABYLON.StandardMaterial("textureWeapon", this.Player.game.scene);
@@ -138,7 +137,7 @@ Weapons.prototype = {
           explosionRadius.material = new BABYLON.StandardMaterial("textureExplosion", Player.game.scene);
           explosionRadius.material.diffuseColor = new BABYLON.Color3(1, 0.058, 0.058);
           explosionRadius.material.specularColor = new BABYLON.Color3(0, 0, 0);
-          explosionRadius.material.alpha = 0.5;
+          explosionRadius.material.alpha = 0.3;
           explosionRadius.material.backFaceCulling = false;
 
           // Chaque frame, on baisse l'opacité et on efface l'objet quand l'alpha est arrivé à 0

@@ -3,10 +3,6 @@ Arena = function (game) {
   this.game = game;
   var scene = game.scene;
 
-  // Create main light
-  var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0, 1, 0), scene);
-  light.intensity = 1;
-
   // Create Skybox
   var skybox = BABYLON.MeshBuilder.CreateBox("skyBox", {
     size: 1000.0
@@ -19,52 +15,24 @@ Arena = function (game) {
   skyboxMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
   skybox.material = skyboxMaterial;
 
-  /*
-  // Create sphere
-  var sphere = BABYLON.Mesh.CreateSphere('sphere1', 16, 2, scene);
-  sphere.position.y = 1;
+  // Création de notre lumière principale
+  var light = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(0, 10, 0), scene);
+  var light2 = new BABYLON.HemisphericLight("light2", new BABYLON.Vector3(0, -1, 0), scene);
+  light2.intensity = 0.8;
 
-  // Create ground
-  var ground = BABYLON.Mesh.CreateGround('ground1', 20, 20, 2, scene);
-  // Ground Texture
-  var materialGround = new BABYLON.StandardMaterial("groundTexture", scene);
-  materialGround.diffuseTexture = new BABYLON.Texture("assets/images/grass.jpg", scene);
-  materialGround.diffuseTexture.uScale = 4.0;
-  materialGround.diffuseTexture.vScale = 4.0;
-  ground.material = materialGround;
+  // // Material pour le sol
+  // var ground = BABYLON.MeshBuilder.CreateGround("ground", {
+  //   width: 50,
+  //   height: 50,
+  //   subdivisions: 4
+  // }, scene);
 
-  // Create cube
-  var mainBox = BABYLON.Mesh.CreateBox("box1", 20, scene);
-  mainBox.scaling.y = 200;
-  mainBox.scaling.x = 5;
-  mainBox.position = new BABYLON.Vector3(55, 1, 55);
-  mainBox.rotation.y = (Math.PI * 45) / 180;
-  mainBox.checkCollisions = true;
+  // var materialGround = new BABYLON.StandardMaterial("wallTexture", scene);
+  // materialGround.diffuseTexture = new BABYLON.Texture("assets/images/grass.jpg", scene);
+  // materialGround.diffuseTexture.uScale = 8.0;
+  // materialGround.diffuseTexture.vScale = 8.0;
+  // ground.material = materialGround;
+  // ground.checkCollisions = true;
 
-    // Cube texture
-    var materialBox = new BABYLON.StandardMaterial("boxTexture", scene);
-    materialBox.diffuseTexture = new BABYLON.Texture("assets/images/brick.jpg", scene);
-    mainBox.material = materialBox;
-
-    // Clone cube
-    var mainBox2 = mainBox.clone("box2");
-    mainBox2.scaling.y = 2;
-    mainBox2.position = new BABYLON.Vector3(5, ((3 / 2) * mainBox2.scaling.y), -5);
-
-    var mainBox3 = mainBox.clone("box3");
-    mainBox3.scaling.y = 3;
-    mainBox3.position = new BABYLON.Vector3(-5, ((3 / 2) * mainBox3.scaling.y), -5);
-
-    var mainBox4 = mainBox.clone("box4");
-    mainBox4.scaling.y = 4;
-    mainBox4.position = new BABYLON.Vector3(-5, ((3 / 2) * mainBox4.scaling.y), 5);
-
-
-    // Create cylinder
-    var cylinder = BABYLON.Mesh.CreateCylinder("cyl1", 20, 5, 5, 20, 4, scene);
-    cylinder.position.y = 20 / 2;
-
-    // Cylinder texture
-    cylinder.material = materialBox; */
 
 }
