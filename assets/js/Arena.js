@@ -4,8 +4,20 @@ Arena = function (game) {
   var scene = game.scene;
 
   // Create main light
-  var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(1, 10, 10), scene);
+  var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0, 1, 0), scene);
   light.intensity = 1;
+
+  // Create Skybox
+  var skybox = BABYLON.MeshBuilder.CreateBox("skyBox", {
+    size: 1000.0
+  }, scene);
+  var skyboxMaterial = new BABYLON.StandardMaterial("skyBox", scene);
+  skyboxMaterial.backFaceCulling = false;
+  skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture("./assets/images/skybox", scene);
+  skyboxMaterial.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE;
+  skyboxMaterial.diffuseColor = new BABYLON.Color3(0, 0, 0);
+  skyboxMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
+  skybox.material = skyboxMaterial;
 
   /*
   // Create sphere
