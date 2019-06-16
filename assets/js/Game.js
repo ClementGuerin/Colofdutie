@@ -14,7 +14,7 @@ Game = function (canvasId) {
   // Init scene
   this.scene = this._initScene(engine);
   var _arena = new Arena(_this);
-  BABYLON.SceneLoader.Append("./assets/scene/clara/", "test-bordel.babylon", this.scene, function (scene) {
+  BABYLON.SceneLoader.Append("./assets/scene/map/", "MAPLego.gltf", this.scene, function (scene) {
     scene.meshes.forEach(mesh => {
       //console.log(mesh);
       if (mesh.id !== "headMainPlayer" && mesh.id !== "rocketLauncher" && mesh.id !== "hitBoxPlayer") {

@@ -160,7 +160,7 @@ Player.prototype = {
   },
   _initCamera: function (scene, canvas) {
     var playerBox = BABYLON.Mesh.CreateBox("headMainPlayer", 3, scene);
-    playerBox.position = new BABYLON.Vector3(15, 5, 15);
+    playerBox.position = new BABYLON.Vector3(0, 5, 0);
     playerBox.ellipsoid = new BABYLON.Vector3(1.2, 2, 1.2);
     // On crée la caméra
     this.camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0, 0, 0), scene);
