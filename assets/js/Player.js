@@ -41,7 +41,7 @@ Player = function (game, canvas) {
         _this.camera.axisMovement[3] = true;
         break;
       case 16:
-        _this.speed = _this.speed * 1.5;
+        _this.speed = 0.35;
         break;
       case 32:
         if (_this.canJump) {
@@ -94,17 +94,31 @@ Player = function (game, canvas) {
 
   // On affecte le clic et on vérifie qu'il est bien utilisé dans la scène (_this.controlEnabled)
   canvas.addEventListener("mousedown", function (evt) {
-    if (_this.controlEnabled && !_this.weponShoot) {
-      _this.weponShoot = true;
-      _this.handleUserMouseDown();
+    switch (evt.which) {
+      case 1:
+        if (_this.controlEnabled && !_this.weponShoot) {
+          _this.weponShoot = true;
+          _this.handleUserMouseDown();
+        }
+        break;
+      case 3:
+        _this.camera.weapons.weaponScope(_this, true)
+        break;
     }
   }, false);
 
   // On fait pareil quand l'utilisateur relache le clic de la souris
   canvas.addEventListener("mouseup", function (evt) {
-    if (_this.controlEnabled && _this.weponShoot) {
-      _this.weponShoot = false;
-      _this.handleUserMouseUp();
+    switch (evt.which) {
+      case 1:
+        if (_this.controlEnabled && _this.weponShoot) {
+          _this.weponShoot = false;
+          _this.handleUserMouseUp();
+        }
+        break;
+      case 3:
+        _this.camera.weapons.weaponScope(_this, false)
+        break;
     }
   }, false);
 

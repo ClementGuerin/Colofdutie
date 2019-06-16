@@ -53,6 +53,7 @@ Weapons.prototype = {
     // On positionne le mesh APRES l'avoir attaché à la caméra
     newWeapon.position = this.bottomPosition.clone();
     newWeapon.position.y = this.topPositionY;
+    newWeapon.rotation.z = 1;
 
     // Ajoutons un material Rouge pour le rendre plus visible
     var materialWeapon = new BABYLON.StandardMaterial('rocketLauncherMat', Player.game.scene);
@@ -154,5 +155,25 @@ Weapons.prototype = {
         newRocket.dispose();
       }
     })
+  },
+  weaponScope: function (Player, state) {
+    if (state) {
+      Player.game.scene.meshes.forEach(mesh => {
+        if (mesh.name === 'rocketLauncher') {
+          mesh.position.x = 0;
+          mesh.rotation.z = 0;
+          console.log(mesh.rotation);
+        }
+      });
+
+    } else {
+      console.log('weaponScope false');
+      Player.game.scene.meshes.forEach(mesh => {
+        if (mesh.name === 'rocketLauncher') {
+          mesh.position.x = 0.6;
+          mesh.rotation.z = 1;
+        }
+      })
+    }
   }
 };

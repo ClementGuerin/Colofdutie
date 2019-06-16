@@ -12,3 +12,16 @@ body {
   height: 100%;
   touch-action: none;
 }
+
+.crosshair {
+  height: 60px;
+  width: 60px;
+  background: url('../images/crosshair.png');
+  background-blend-mode: darken, luminosity;
+  pointer-events: none;
+  position: fixed;
+  top: calc(50% - 30px);
+  left: calc(50% - 30px);
+  z-index: 9999;
+  opacity: 0.5;
+}
