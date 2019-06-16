@@ -82,6 +82,10 @@ Weapons.prototype = {
 
       this.createRocket(this.Player.camera.playerBox);
       this.canFire = false;
+      let piou = new BABYLON.Sound("piou", "./assets/sounds/piou.wav", this.Player.game.scene, null, {
+        loop: false,
+        autoplay: true
+      });
     } else {
       // Nothing to do : cannot fire
     }
@@ -100,7 +104,7 @@ Weapons.prototype = {
       positionValue.y + (newRocket.direction.y * 1),
       positionValue.z + (newRocket.direction.z * 1));
     newRocket.rotation = new BABYLON.Vector3(rotationValue.x, rotationValue.y, rotationValue.z);
-    newRocket.scaling = new BABYLON.Vector3(0.1, 0.1, 01);
+    newRocket.scaling = new BABYLON.Vector3(0.1, 0.1, 0.1);
     newRocket.isPickable = false;
 
     newRocket.material = new BABYLON.StandardMaterial("textureWeapon", this.Player.game.scene);
@@ -111,7 +115,7 @@ Weapons.prototype = {
 
     newRocket.registerAfterRender(function () {
       // On bouge la roquette vers l'avant
-      newRocket.translate(new BABYLON.Vector3(0, 0, 1), 1, 0);
+      newRocket.translate(new BABYLON.Vector3(0, 0, 1), 20, 0);
 
       // On crée un rayon qui part de la base de la roquette vers l'avant
       var rayRocket = new BABYLON.Ray(newRocket.position, newRocket.direction);
@@ -119,12 +123,7 @@ Weapons.prototype = {
       // On regarde quel est le premier objet qu'on touche
       var meshFound = newRocket.getScene().pickWithRay(rayRocket);
 
-      // Si la distance au premier objet touché est inférieure a 10, on détruit la roquette
-      if (!meshFound || meshFound.distance < 10) {
-        newRocket.dispose();
-      }
-
-      if (!meshFound || meshFound.distance < 10) {
+      if (!meshFound || meshFound.distance < 1) {
         // On vérifie qu'on a bien touché quelque chose
         if (meshFound.pickedMesh) {
           // On crée une sphere qui représentera la zone d'impact
@@ -139,6 +138,10 @@ Weapons.prototype = {
           explosionRadius.material.specularColor = new BABYLON.Color3(0, 0, 0);
           explosionRadius.material.alpha = 0.3;
           explosionRadius.material.backFaceCulling = false;
+          let braw = new BABYLON.Sound("braw", "./assets/sounds/braw.wav", Player.game.scene, null, {
+            loop: false,
+            autoplay: true
+          });
 
           // Chaque frame, on baisse l'opacité et on efface l'objet quand l'alpha est arrivé à 0
           explosionRadius.registerAfterRender(function () {

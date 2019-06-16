@@ -5,13 +5,25 @@ Player = function (game, canvas) {
   this.game = game;
 
   // Vitesse de base
-  this.speed = 0.1;
+  this.speed = 0.2;
 
   // Si le tir est activée ou non
   this.weponShoot = false;
 
   // On désactive les contrôles par défaut de la camera
   this.axisMovement = [false, false, false, false];
+
+  // Si le joueur peut sauter ou non
+  this.canJump = true;
+
+  // La hauteur de saut
+  this.jumpHeight = 5;
+
+  // Init camera
+  this._initCamera(this.game.scene, canvas);
+
+  // Save position before jump
+  this.originHeight = this.camera.playerBox.position.clone();
 
   // Actions quand on appuis sur une touche
   window.addEventListener("keydown", function (evt) {
@@ -27,6 +39,17 @@ Player = function (game, canvas) {
         break;
       case 68:
         _this.camera.axisMovement[3] = true;
+        break;
+      case 16:
+        _this.speed = _this.speed * 1.5;
+        break;
+      case 32:
+        if (_this.canJump) {
+          // On définit la hauteur de saut à la position actuelle du joueur
+          // plus la variable jumpHeight
+          _this.jumpNeed = _this.camera.playerBox.position.y + _this.jumpHeight;
+          _this.canJump = false;
+        }
         break;
     }
   }, false);
@@ -46,6 +69,9 @@ Player = function (game, canvas) {
         break;
       case 68:
         _this.camera.axisMovement[3] = false;
+        break;
+      case 16:
+        _this.speed = 0.2;
         break;
     }
   }, false);
@@ -87,10 +113,6 @@ Player = function (game, canvas) {
 
   // On lance l'event _initPointerLock pour checker le clic dans la scène
   this._initPointerLock();
-
-
-  // Init camera
-  this._initCamera(this.game.scene, canvas);
 };
 
 Player.prototype = {
@@ -154,6 +176,7 @@ Player.prototype = {
     hitBoxPlayer.isMain = true;
   },
   _checkMove: function (ratioFps) {
+    var _this = this;
     let relativeSpeed = this.speed / ratioFps;
     if (this.camera.axisMovement[0]) {
       forward = new BABYLON.Vector3(
@@ -187,7 +210,42 @@ Player.prototype = {
       );
       this.camera.playerBox.moveWithCollisions(right);
     }
-    this.camera.playerBox.moveWithCollisions(new BABYLON.Vector3(0, (-1.5) * relativeSpeed, 0));
+    // Si l'utilisateur saute
+    if (this.jumpNeed) {
+      // Lerp
+      this.camera.playerBox.moveWithCollisions(new BABYLON.Vector3(0, ((this.jumpNeed - this.jumpHeight) * 0.5) * relativeSpeed, 0));
+      if (this.camera.playerBox.position.y + 1 > this.jumpNeed) {
+        // Si c'est le cas, on prépare airTime
+        this.airTime = 0;
+        this.jumpNeed = false;
+      }
+      this.canJump = false;
+    } else {
+      // On trace un rayon depuis le joueur
+      var rayPlayer = new BABYLON.Ray(this.camera.playerBox.position, new BABYLON.Vector3(0, -1, 0));
+
+      // On regarde quel est le premier objet qu'on touche
+      // On exclut tous les meshes qui appartiennent au joueur
+      var distPlayer = this.game.scene.pickWithRay(rayPlayer, function (item) {
+        if (item.name == "hitBoxPlayer" || item.id == "headMainPlayer" || item.id == "rocketLauncher")
+          return false;
+        else
+          return true;
+      });
+      // targetHeight est égal à la hauteur du personnage
+      var targetHeight = this.originHeight.y;
+      // Si la distance avec le sol est inférieure ou égale à la hauteur du joueur -> On a touché le sol
+      if (distPlayer.distance < targetHeight) {
+        this.canJump = true
+        this.airTime = 0;
+      } else {
+        // Sinon, on augmente airTime
+        this.airTime++;
+        // this.camera.playerBox.moveWithCollisions(new BABYLON.Vector3(0, (this.airTime / 30) * -0.7, 0));
+      }
+      // Si il se passe rien alors la gravité fait son effet
+      this.camera.playerBox.moveWithCollisions(new BABYLON.Vector3(0, -1 * relativeSpeed, 0));
+    }
   },
   handleUserMouseDown: function () {
     if (this.isAlive === true) {
