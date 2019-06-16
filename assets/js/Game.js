@@ -23,6 +23,7 @@ Game = function (canvasId) {
     });
   });
 
+
   // Init Player.js
   var _player = new Player(_this, canvas);
 
@@ -40,7 +41,17 @@ Game = function (canvasId) {
     if (_player.camera.weapons.launchBullets === true) {
       _player.camera.weapons.launchFire();
     }
+
   });
+
+  var fpsLoop = setInterval(function () {
+    document.querySelector('.fps').textContent = _this.fps + ' FPS';
+    if (_this.fps < 30) {
+      document.querySelector('.fps').style.color = 'red';
+    } else {
+      document.querySelector('.fps').style.color = 'white';
+    }
+  }, 300)
 
   // Resize window
   window.addEventListener('resize', function () {
