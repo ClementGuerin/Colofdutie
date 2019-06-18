@@ -17,7 +17,7 @@ Player = function (game, canvas) {
   this.canJump = true;
 
   // La hauteur de saut
-  this.jumpHeight = 5;
+  this.jumpHeight = 3.5;
 
   // Init camera
   this._initCamera(this.game.scene, canvas);
@@ -160,7 +160,7 @@ Player.prototype = {
   },
   _initCamera: function (scene, canvas) {
     var playerBox = BABYLON.Mesh.CreateBox("headMainPlayer", 3, scene);
-    playerBox.position = new BABYLON.Vector3(0, 5, 0);
+    playerBox.position = new BABYLON.Vector3(5, 2, 10);
     playerBox.ellipsoid = new BABYLON.Vector3(1.2, 2, 1.2);
     // On crée la caméra
     this.camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0, 0, 0), scene);
@@ -227,38 +227,47 @@ Player.prototype = {
     // Si l'utilisateur saute
     if (this.jumpNeed) {
       // Lerp
-      this.camera.playerBox.moveWithCollisions(new BABYLON.Vector3(0, ((this.jumpNeed - this.jumpHeight) * 0.5) * relativeSpeed, 0));
-      if (this.camera.playerBox.position.y + 1 > this.jumpNeed) {
+      percentMove = this.jumpNeed - this.camera.playerBox.position.y;
+      // Axe de mouvement
+      up = new BABYLON.Vector3(0, percentMove / 2 * relativeSpeed, 0);
+      this.camera.playerBox.moveWithCollisions(up);
+      // On vérifie si le joueur a atteind la hauteur désiré
+      var rayPlayer = new BABYLON.Ray(this.camera.playerBox.position, new BABYLON.Vector3(0, 1, 0));
+      var distPlayer = this.game.scene.pickWithRay(rayPlayer, function (item) {
+        if (item.name == "hitBoxPlayer" || item.id == "headMainPlayer" || item.id == "bodyGhost" || item.id == 'weaponHand')
+          return false;
+        else
+          return true;
+      });
+      console.log(distPlayer.distance, 'distPlayer.distance');
+      if (this.camera.playerBox.position.y + 1 > this.jumpNeed || distPlayer.distance <= 2.03) {
         // Si c'est le cas, on prépare airTime
         this.airTime = 0;
         this.jumpNeed = false;
       }
-      this.canJump = false;
     } else {
       // On trace un rayon depuis le joueur
       var rayPlayer = new BABYLON.Ray(this.camera.playerBox.position, new BABYLON.Vector3(0, -1, 0));
 
       // On regarde quel est le premier objet qu'on touche
-      // On exclut tous les meshes qui appartiennent au joueur
+      // On exclue tout les mesh qui appartiennent au joueur
       var distPlayer = this.game.scene.pickWithRay(rayPlayer, function (item) {
-        if (item.name == "hitBoxPlayer" || item.id == "headMainPlayer" || item.id == "rocketLauncher")
+        if (item.name == "hitBoxPlayer" || item.id == "headMainPlayer" || item.id == "bodyGhost" || item.id == 'weaponHand')
           return false;
         else
           return true;
       });
-      // targetHeight est égal à la hauteur du personnage
+
       var targetHeight = this.originHeight.y;
-      // Si la distance avec le sol est inférieure ou égale à la hauteur du joueur -> On a touché le sol
-      if (distPlayer.distance < targetHeight) {
-        this.canJump = true
+      if (distPlayer.distance - 1 <= targetHeight) {
+        if (!this.canJump) {
+          _this.canJump = true;
+        }
         this.airTime = 0;
       } else {
-        // Sinon, on augmente airTime
         this.airTime++;
-        // this.camera.playerBox.moveWithCollisions(new BABYLON.Vector3(0, (this.airTime / 30) * -0.7, 0));
+        this.camera.playerBox.moveWithCollisions(new BABYLON.Vector3(0, (-this.airTime / 20) * relativeSpeed, 0));
       }
-      // Si il se passe rien alors la gravité fait son effet
-      this.camera.playerBox.moveWithCollisions(new BABYLON.Vector3(0, -1 * relativeSpeed, 0));
     }
   },
   handleUserMouseDown: function () {

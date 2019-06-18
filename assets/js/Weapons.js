@@ -109,50 +109,38 @@ Weapons.prototype = {
     newRocket.isPickable = false;
 
     newRocket.material = new BABYLON.StandardMaterial("textureWeapon", this.Player.game.scene);
-    newRocket.material.diffuseColor = new BABYLON.Color3(1, 1, 1);
+    newRocket.material.diffuseColor = new BABYLON.Color3(0, 0, 0);
 
     // On donne accès à Player dans registerBeforeRender
     var Player = this.Player;
 
     newRocket.registerAfterRender(function () {
+      var rayRocket = new BABYLON.Ray(newRocket.position, newRocket.direction);
       // On bouge la roquette vers l'avant
-      newRocket.translate(new BABYLON.Vector3(0, 0, 1), 20, 0);
+      newRocket.translate(new BABYLON.Vector3(0, 0, 50), 1, 0);
 
       // On crée un rayon qui part de la base de la roquette vers l'avant
-      var rayRocket = new BABYLON.Ray(newRocket.position, newRocket.direction);
 
       // On regarde quel est le premier objet qu'on touche
       var meshFound = newRocket.getScene().pickWithRay(rayRocket);
 
-      if (!meshFound || meshFound.distance < 1) {
+      if (!meshFound || meshFound.distance < 50) {
         // On vérifie qu'on a bien touché quelque chose
         if (meshFound.pickedMesh) {
-          // On crée une sphere qui représentera la zone d'impact
-          var explosionRadius = BABYLON.Mesh.CreateSphere("sphere", 5.0, 5, Player.game.scene);
-          // On positionne la sphère là où il y a eu impact
-          explosionRadius.position = meshFound.pickedPoint;
-          // On fait en sorte que les explosions ne soient pas considérées pour le Ray de la roquette
-          explosionRadius.isPickable = false;
-          // On crée un petit material orange
-          explosionRadius.material = new BABYLON.StandardMaterial("textureExplosion", Player.game.scene);
-          explosionRadius.material.diffuseColor = new BABYLON.Color3(1, 0.058, 0.058);
-          explosionRadius.material.specularColor = new BABYLON.Color3(0, 0, 0);
-          explosionRadius.material.alpha = 0.3;
-          explosionRadius.material.backFaceCulling = false;
+          // Create mesh impact
           let braw = new BABYLON.Sound("braw", "./assets/sounds/braw.wav", Player.game.scene, null, {
             loop: false,
             autoplay: true
           });
-
-          // Chaque frame, on baisse l'opacité et on efface l'objet quand l'alpha est arrivé à 0
-          explosionRadius.registerAfterRender(function () {
-            explosionRadius.material.alpha -= 0.02;
-            if (explosionRadius.material.alpha <= 0) {
-              explosionRadius.dispose();
-            }
-          });
+          var impactMesh = BABYLON.Mesh.CreateBox("impact", 0.1, Player.game.scene);
+          impactMesh.material = new BABYLON.StandardMaterial("textureImpact", Player.game.scene);
+          impactMesh.material.diffuseColor = new BABYLON.Color3(0, 0, 0);
+          impactMesh.position = meshFound.pickedPoint;
+          var waitImpactDispose = setTimeout(function () {
+            impactMesh.dispose();
+          }, 5000);
+          newRocket.dispose();
         }
-        newRocket.dispose();
       }
     })
   },
@@ -162,12 +150,10 @@ Weapons.prototype = {
         if (mesh.name === 'rocketLauncher') {
           mesh.position.x = 0;
           mesh.rotation.z = 0;
-          console.log(mesh.rotation);
         }
       });
 
     } else {
-      console.log('weaponScope false');
       Player.game.scene.meshes.forEach(mesh => {
         if (mesh.name === 'rocketLauncher') {
           mesh.position.x = 0.6;
