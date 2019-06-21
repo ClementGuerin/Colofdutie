@@ -7515,17 +7515,6 @@
     "metallicFactor": 0
    },
    "alphaMode": "BLEND"
-  },
-  {
-   "name": "Default-Zone1",
-   "pbrMetallicRoughness": {
-    "baseColorFactor": [
-     0.6901960784313725,
-     0.6901960784313725,
-     0.6901960784313725,
-     1
-    ]
-   }
   }
  ],
  "meshes": [
@@ -8467,6 +8456,7 @@
    "primitives": [
     {
      "indices": 268,
+     "material": 3,
      "mode": 4,
      "attributes": {
       "POSITION": 265,

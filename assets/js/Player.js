@@ -162,11 +162,11 @@ Player.prototype = {
     // On crée la caméra
     this.camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0, 1, 0), scene);
     // Split camera
-    this.camera2 = new BABYLON.FreeCamera("camera2", new BABYLON.Vector3(0, 1, 0), scene);
-    scene.activeCameras.push(this.camera);
-    scene.activeCameras.push(this.camera2);
-    this.camera.viewport = new BABYLON.Viewport(0, 0, 0.5, 1.0);
-    this.camera2.viewport = new BABYLON.Viewport(0.5, 0, 0.5, 1.0);
+    // this.camera2 = new BABYLON.FreeCamera("camera2", new BABYLON.Vector3(0, 1, 0), scene);
+    // scene.activeCameras.push(this.camera);
+    // scene.activeCameras.push(this.camera2);
+    // this.camera.viewport = new BABYLON.Viewport(0, 0, 0.5, 1.0);
+    // this.camera2.viewport = new BABYLON.Viewport(0.5, 0, 0.5, 1.0);
     // -------------------
     this.camera.ellipsoid = new BABYLON.Vector3(1.6, 1, 1.6);
     this.camera.weapons = new Weapons(_this);
@@ -224,12 +224,14 @@ Player.prototype = {
       });
     });
 
+    this.camera.parent = this.playerBox;
+
     // Render meshes
     scene.registerAfterRender(function () {
       if (_this.camera !== 'undefined' && typeof _this.head !== 'undefined' && typeof _this.playerBox !== 'undefined') {
-        _this.camera.position = _this.head.absolutePosition;
+        // _this.camera.position = _this.head.absolutePosition;
         _this.camera.rotation.x = _this.head.rotation.x
-        _this.camera.rotation.y = _this.playerBox.rotation.y
+        // _this.camera.rotation.y = _this.playerBox.rotation.y
       }
     })
 

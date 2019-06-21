@@ -13,7 +13,6 @@ Weapons = function (Player) {
   this.rocketLauncher = null;
 
   BABYLON.SceneLoader.ImportMesh(["WeaponBox"], "./assets/models/weapon/", "Weapon.gltf", Player.game.scene, function (meshes, particleSystems, skeletons) {
-    console.log(meshes, 'dsfdgdfg');
     meshes.forEach(mesh => {
       if (mesh.id == 'WeaponBox') {
         mesh.rotationQuaternion = null;
@@ -23,7 +22,6 @@ Weapons = function (Player) {
         _this.rocketLauncher.parent = Player.camera;
         _this.rocketLauncher.position = new BABYLON.Vector3(0, -0.5, 1);
         _this.rocketLauncher.rotation.y = degToRad(90);
-        console.log(_this.rocketLauncher, 'plop weapon');
       }
     });
   });
@@ -69,11 +67,11 @@ Weapons.prototype = {
 
       var direction = this.Player.game.scene.pick(renderWidth / 2, renderHeight / 2);
       if (direction.pickedPoint !== null) {
-        direction = direction.pickedPoint.subtractInPlace(this.Player.camera.position);
+        direction = direction.pickedPoint.subtractInPlace(this.Player.playerBox.absolutePosition);
         direction = direction.normalize();
       }
 
-      this.createRocket(this.Player.camera, direction);
+      this.createRocket(this.Player.playerBox, direction);
       this.canFire = false;
       let piou = new BABYLON.Sound("piou", "./assets/sounds/piou.wav", this.Player.game.scene, null, {
         loop: false,
@@ -88,15 +86,15 @@ Weapons.prototype = {
     var rotationValue = playerPosition.rotation;
     var newRocket = BABYLON.Mesh.CreateBox("rocket", 1, this.Player.game.scene);
     newRocket.direction = new BABYLON.Vector3(
-      Math.sin(rotationValue.y) * Math.cos(rotationValue.x),
-      Math.sin(-rotationValue.x),
-      Math.cos(rotationValue.y) * Math.cos(rotationValue.x)
+      Math.sin(rotationValue.y) * Math.cos(this.Player.head.rotation.x),
+      Math.sin(-this.Player.head.rotation.x),
+      Math.cos(rotationValue.y) * Math.cos(this.Player.head.rotation.x)
     )
     newRocket.position = new BABYLON.Vector3(
       positionValue.x + (newRocket.direction.x),
       positionValue.y + (newRocket.direction.y + 0.5),
       positionValue.z + (newRocket.direction.z));
-    newRocket.rotation = new BABYLON.Vector3(rotationValue.x, rotationValue.y, rotationValue.z);
+    newRocket.rotation = new BABYLON.Vector3(this.Player.head.rotation.x, rotationValue.y, rotationValue.z);
     newRocket.scaling = new BABYLON.Vector3(0.1, 0.1, 0.1);
     newRocket.isPickable = false;
 
