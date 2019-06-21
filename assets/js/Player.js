@@ -22,9 +22,6 @@ Player = function (game, canvas) {
   // Init camera
   this._initCamera(this.game.scene, canvas);
 
-  // Save position before jump
-  this.originHeight = this.camera.playerBox.position.clone();
-
   // Actions quand on appuis sur une touche
   window.addEventListener("keydown", function (evt) {
     switch (evt.keyCode) {
@@ -47,7 +44,7 @@ Player = function (game, canvas) {
         if (_this.canJump) {
           // On définit la hauteur de saut à la position actuelle du joueur
           // plus la variable jumpHeight
-          _this.jumpNeed = _this.camera.playerBox.position.y + _this.jumpHeight;
+          _this.jumpNeed = _this.playerBox.position.y + _this.jumpHeight;
           _this.canJump = false;
         }
         break;
@@ -81,10 +78,10 @@ Player = function (game, canvas) {
   // Quand la souris bouge dans la scène
   window.addEventListener("mousemove", function (evt) {
     if (_this.rotEngaged === true) {
-      _this.camera.playerBox.rotation.y += evt.movementX * 0.001 * (_this.angularSensibility / 250);
-      var nextRotationX = _this.camera.playerBox.rotation.x + (evt.movementY * 0.001 * (_this.angularSensibility / 250));
+      _this.playerBox.rotation.y += evt.movementX * 0.001 * (_this.angularSensibility / 250);
+      var nextRotationX = _this.head.rotation.x + (evt.movementY * 0.001 * (_this.angularSensibility / 250));
       if (nextRotationX < degToRad(90) && nextRotationX > degToRad(-90)) {
-        _this.camera.playerBox.rotation.x += evt.movementY * 0.001 * (_this.angularSensibility / 250);
+        _this.head.rotation.x += evt.movementY * 0.001 * (_this.angularSensibility / 250);
       }
     }
   }, false);
@@ -159,114 +156,173 @@ Player.prototype = {
     document.addEventListener("webkitpointerlockchange", pointerlockchange, false);
   },
   _initCamera: function (scene, canvas) {
-    var playerBox = BABYLON.Mesh.CreateBox("headMainPlayer", 3, scene);
-    playerBox.position = new BABYLON.Vector3(5, 2, 10);
-    playerBox.ellipsoid = new BABYLON.Vector3(1.2, 2, 1.2);
-    // On crée la caméra
-    this.camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0, 0, 0), scene);
-    this.camera.playerBox = playerBox
-    this.camera.parent = this.camera.playerBox;
+    var _this = this;
 
-    // Ajout des collisions avec playerBox
-    this.camera.playerBox.checkCollisions = true;
-    this.camera.playerBox.applyGravity = true;
+
+    // On crée la caméra
+    this.camera = new BABYLON.FreeCamera("camera", new BABYLON.Vector3(0, 1, 0), scene);
+    // Split camera
+    this.camera2 = new BABYLON.FreeCamera("camera2", new BABYLON.Vector3(0, 1, 0), scene);
+    scene.activeCameras.push(this.camera);
+    scene.activeCameras.push(this.camera2);
+    this.camera.viewport = new BABYLON.Viewport(0, 0, 0.5, 1.0);
+    this.camera2.viewport = new BABYLON.Viewport(0.5, 0, 0.5, 1.0);
+    // -------------------
+    this.camera.ellipsoid = new BABYLON.Vector3(1.6, 1, 1.6);
+    this.camera.weapons = new Weapons(_this);
+
+    // Create playerBox
+    this.playerBox = BABYLON.MeshBuilder.CreateBox("playerBox", {
+      height: 2.41,
+      width: 1.6,
+      depth: 1.6
+    }, scene);
+    this.playerBox.position = new BABYLON.Vector3(0, 1.28, 0);
+    console.log(this.playerBox, 'playerBox');
+    let playerBoxMaterial = new BABYLON.StandardMaterial("playerBoxMaterial", scene);
+    playerBoxMaterial.alpha = 0.1;
+    this.playerBox.material = playerBoxMaterial;
+    this.playerBox.applyGravity = true;
+    this.originHeight = this.playerBox.position.clone();
+
+
+    BABYLON.SceneLoader.ImportMesh(['PlayerModel'], "./assets/models/player/", "PlayerModelScene.gltf", scene, function (meshes) {
+      console.log(meshes, 'meshes');
+      meshes.forEach(mesh => {
+        mesh.rotationQuaternion = null;
+        // mesh.position = new BABYLON.Vector3(0, 0, 0);
+        mesh.parent = _this.playerBox;
+        switch (mesh.id) {
+          case 'Head':
+            _this.head = mesh;
+            _this.head.position.y = 0.544;
+            // _this.camera.parent = _this.head;
+            _this.camera.rotation = new BABYLON.Vector3(0, degToRad(0), 0);
+            console.log(_this.camera.rotation);
+            _this.camera.position.y -= 0.25;
+            break;
+          case 'Arm-Left':
+            _this.armLeft = mesh;
+            _this.armLeft.rotation.x = degToRad(-90);
+            _this.armLeft.position.y = 0.15;
+            break;
+          case 'Arm-Right':
+            _this.armRight = mesh;
+            _this.armRight.rotation.x = degToRad(-90);
+            _this.armRight.position.y = 0.15;
+            break;
+          case 'Chest':
+            _this.chest = mesh;
+            _this.chest.position.y = -0.08;
+            break;
+          case 'Leg-Left':
+            _this.legLeft = mesh;
+            _this.legLeft.position.y = -0.83;
+            break;
+          case 'Leg-Right':
+            _this.legRight = mesh;
+            _this.legRight.position.y = -0.83;
+            break;
+        }
+      });
+    });
+
+    // Render meshes
+    scene.registerAfterRender(function () {
+      if (_this.camera !== 'undefined' && typeof _this.head !== 'undefined' && typeof _this.playerBox !== 'undefined') {
+        _this.camera.position = _this.head.absolutePosition;
+        _this.camera.rotation.x = _this.head.rotation.x
+        _this.camera.rotation.y = _this.playerBox.rotation.y
+      }
+    })
 
     // Si le joueur est en vie ou non
     this.isAlive = true;
 
-    // Pour savoir que c'est le joueur principal
-    this.camera.isMain = true;
-
-    // On crée les armes !
-    this.camera.weapons = new Weapons(this);
-
     // On ajoute l'axe de mouvement
     this.camera.axisMovement = [false, false, false, false];
-
-    var hitBoxPlayer = BABYLON.Mesh.CreateBox("hitBoxPlayer", 3, scene);
-    hitBoxPlayer.parent = this.camera.playerBox;
-    hitBoxPlayer.scaling.y = 2;
-    hitBoxPlayer.isPickable = true;
-    hitBoxPlayer.isMain = true;
   },
   _checkMove: function (ratioFps) {
     var _this = this;
     let relativeSpeed = this.speed / ratioFps;
     if (this.camera.axisMovement[0]) {
       forward = new BABYLON.Vector3(
-        parseFloat(Math.sin(parseFloat(this.camera.playerBox.rotation.y))) * relativeSpeed,
+        parseFloat(Math.sin(parseFloat(this.playerBox.rotation.y))) * relativeSpeed,
         0,
-        parseFloat(Math.cos(parseFloat(this.camera.playerBox.rotation.y))) * relativeSpeed
+        parseFloat(Math.cos(parseFloat(this.playerBox.rotation.y))) * relativeSpeed
       );
-      this.camera.playerBox.moveWithCollisions(forward);
+      this.playerBox.moveWithCollisions(forward);
     }
     if (this.camera.axisMovement[1]) {
       backward = new BABYLON.Vector3(
-        parseFloat(-Math.sin(parseFloat(this.camera.playerBox.rotation.y))) * relativeSpeed,
+        parseFloat(-Math.sin(parseFloat(this.playerBox.rotation.y))) * relativeSpeed,
         0,
-        parseFloat(-Math.cos(parseFloat(this.camera.playerBox.rotation.y))) * relativeSpeed
+        parseFloat(-Math.cos(parseFloat(this.playerBox.rotation.y))) * relativeSpeed
       );
-      this.camera.playerBox.moveWithCollisions(backward);
+      this.playerBox.moveWithCollisions(backward);
     }
     if (this.camera.axisMovement[2]) {
-      left = new BABYLON.Vector3(
-        parseFloat(Math.sin(parseFloat(this.camera.playerBox.rotation.y) + degToRad(-90))) * relativeSpeed,
+      right = new BABYLON.Vector3(
+        parseFloat(Math.sin(parseFloat(this.playerBox.rotation.y) + degToRad(-90))) * relativeSpeed,
         0,
-        parseFloat(Math.cos(parseFloat(this.camera.playerBox.rotation.y) + degToRad(-90))) * relativeSpeed
+        parseFloat(Math.cos(parseFloat(this.playerBox.rotation.y) + degToRad(-90))) * relativeSpeed
       );
-      this.camera.playerBox.moveWithCollisions(left);
+      this.playerBox.moveWithCollisions(right);
     }
     if (this.camera.axisMovement[3]) {
-      right = new BABYLON.Vector3(
-        parseFloat(-Math.sin(parseFloat(this.camera.playerBox.rotation.y) + degToRad(-90))) * relativeSpeed,
+      left = new BABYLON.Vector3(
+        parseFloat(-Math.sin(parseFloat(this.playerBox.rotation.y) + degToRad(-90))) * relativeSpeed,
         0,
-        parseFloat(-Math.cos(parseFloat(this.camera.playerBox.rotation.y) + degToRad(-90))) * relativeSpeed
+        parseFloat(-Math.cos(parseFloat(this.playerBox.rotation.y) + degToRad(-90))) * relativeSpeed
       );
-      this.camera.playerBox.moveWithCollisions(right);
+      this.playerBox.moveWithCollisions(left);
     }
     // Si l'utilisateur saute
     if (this.jumpNeed) {
       // Lerp
-      percentMove = this.jumpNeed - this.camera.playerBox.position.y;
+      percentMove = this.jumpNeed - this.playerBox.position.y;
       // Axe de mouvement
       up = new BABYLON.Vector3(0, percentMove / 2 * relativeSpeed, 0);
-      this.camera.playerBox.moveWithCollisions(up);
+      this.playerBox.moveWithCollisions(up);
       // On vérifie si le joueur a atteind la hauteur désiré
-      var rayPlayer = new BABYLON.Ray(this.camera.playerBox.position, new BABYLON.Vector3(0, 1, 0));
+      var rayPlayer = new BABYLON.Ray(this.playerBox.position, new BABYLON.Vector3(0, 1, 0));
       var distPlayer = this.game.scene.pickWithRay(rayPlayer, function (item) {
-        if (item.name == "hitBoxPlayer" || item.id == "headMainPlayer" || item.id == "bodyGhost" || item.id == 'weaponHand')
+        if (item.name == "Head" || item.id == "Arm-Left" || item.id == "Arm-Right" || item.id == 'Chest' || item.id == "Leg-Left" || item.id == "Leg-Right" || item.id == 'playerBox')
           return false;
         else
           return true;
       });
-      console.log(distPlayer.distance, 'distPlayer.distance');
-      if (this.camera.playerBox.position.y + 1 > this.jumpNeed || distPlayer.distance <= 2.03) {
+      if (this.playerBox.position.y + 1 > this.jumpNeed || distPlayer.distance <= 0.8) {
         // Si c'est le cas, on prépare airTime
         this.airTime = 0;
         this.jumpNeed = false;
       }
     } else {
       // On trace un rayon depuis le joueur
-      var rayPlayer = new BABYLON.Ray(this.camera.playerBox.position, new BABYLON.Vector3(0, -1, 0));
+      var rayPlayer = new BABYLON.Ray(this.playerBox.position, new BABYLON.Vector3(0, -1, 0));
 
       // On regarde quel est le premier objet qu'on touche
       // On exclue tout les mesh qui appartiennent au joueur
       var distPlayer = this.game.scene.pickWithRay(rayPlayer, function (item) {
-        if (item.name == "hitBoxPlayer" || item.id == "headMainPlayer" || item.id == "bodyGhost" || item.id == 'weaponHand')
+        if (item.name == "Head" || item.id == "Arm-Left" || item.id == "Arm-Right" || item.id == 'Chest' || item.id == "Leg-Left" || item.id == "Leg-Right" || item.id == 'playerBox')
           return false;
         else
           return true;
       });
 
       var targetHeight = this.originHeight.y;
-      if (distPlayer.distance - 1 <= targetHeight) {
+
+      // console.log(targetHeight);
+      // 1.01051241727804
+
+      if (distPlayer.distance <= targetHeight) {
         if (!this.canJump) {
           _this.canJump = true;
         }
         this.airTime = 0;
       } else {
         this.airTime++;
-        this.camera.playerBox.moveWithCollisions(new BABYLON.Vector3(0, (-this.airTime / 20) * relativeSpeed, 0));
+        this.playerBox.moveWithCollisions(new BABYLON.Vector3(0, (-this.airTime / 20) * relativeSpeed, 0));
       }
     }
   },

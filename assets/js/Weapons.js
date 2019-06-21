@@ -52,6 +52,7 @@ Weapons.prototype = {
 
     // On positionne le mesh APRES l'avoir attaché à la caméra
     newWeapon.position = this.bottomPosition.clone();
+    newWeapon.position.z = 1;
     newWeapon.position.y = this.topPositionY;
     newWeapon.rotation.z = 1;
 
@@ -81,7 +82,7 @@ Weapons.prototype = {
         direction = direction.normalize();
       }
 
-      this.createRocket(this.Player.camera.playerBox);
+      this.createRocket(this.Player.camera, direction);
       this.canFire = false;
       let piou = new BABYLON.Sound("piou", "./assets/sounds/piou.wav", this.Player.game.scene, null, {
         loop: false,
@@ -101,30 +102,34 @@ Weapons.prototype = {
       Math.cos(rotationValue.y) * Math.cos(rotationValue.x)
     )
     newRocket.position = new BABYLON.Vector3(
-      positionValue.x + (newRocket.direction.x * 1),
-      positionValue.y + (newRocket.direction.y * 1),
-      positionValue.z + (newRocket.direction.z * 1));
+      positionValue.x + (newRocket.direction.x),
+      positionValue.y + (newRocket.direction.y + 0.5),
+      positionValue.z + (newRocket.direction.z));
     newRocket.rotation = new BABYLON.Vector3(rotationValue.x, rotationValue.y, rotationValue.z);
     newRocket.scaling = new BABYLON.Vector3(0.1, 0.1, 0.1);
     newRocket.isPickable = false;
 
     newRocket.material = new BABYLON.StandardMaterial("textureWeapon", this.Player.game.scene);
     newRocket.material.diffuseColor = new BABYLON.Color3(0, 0, 0);
+    newRocket.material.alpha = 0.15;
 
     // On donne accès à Player dans registerBeforeRender
     var Player = this.Player;
 
     newRocket.registerAfterRender(function () {
+      var bulletSpeed = 50;
+
+      newRocket.material.alpha = 1;
       var rayRocket = new BABYLON.Ray(newRocket.position, newRocket.direction);
       // On bouge la roquette vers l'avant
-      newRocket.translate(new BABYLON.Vector3(0, 0, 50), 1, 0);
+      newRocket.translate(new BABYLON.Vector3(0, 0, bulletSpeed), 1, 0);
 
       // On crée un rayon qui part de la base de la roquette vers l'avant
 
       // On regarde quel est le premier objet qu'on touche
       var meshFound = newRocket.getScene().pickWithRay(rayRocket);
 
-      if (!meshFound || meshFound.distance < 50) {
+      if (!meshFound || meshFound.distance < bulletSpeed) {
         // On vérifie qu'on a bien touché quelque chose
         if (meshFound.pickedMesh) {
           // Create mesh impact
@@ -135,10 +140,12 @@ Weapons.prototype = {
           var impactMesh = BABYLON.Mesh.CreateBox("impact", 0.1, Player.game.scene);
           impactMesh.material = new BABYLON.StandardMaterial("textureImpact", Player.game.scene);
           impactMesh.material.diffuseColor = new BABYLON.Color3(0, 0, 0);
+          impactMesh.isPickable = false;
           impactMesh.position = meshFound.pickedPoint;
-          var waitImpactDispose = setTimeout(function () {
-            impactMesh.dispose();
-          }, 5000);
+          impactMesh.rotation = newRocket.rotation;
+          // var waitImpactDispose = setTimeout(function () {
+          //   impactMesh.dispose();
+          // }, 5000);
           newRocket.dispose();
         }
       }

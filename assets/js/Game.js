@@ -17,7 +17,13 @@ Game = function (canvasId) {
   BABYLON.SceneLoader.Append("./assets/scene/map/", "Plopmap.gltf", this.scene, function (scene) {
     scene.meshes.forEach(mesh => {
       //console.log(mesh);
-      if (mesh.id !== "headMainPlayer" && mesh.id !== "rocketLauncher" && mesh.id !== "hitBoxPlayer") {
+      if (mesh.id !== "rocketLauncher" &&
+        mesh.id !== "Head" &&
+        mesh.id !== "Arm-Left" &&
+        mesh.id !== "Arm-Right" &&
+        mesh.id !== "Chest" &&
+        mesh.id !== "Leg-Left" &&
+        mesh.id !== "Leg-Right") {
         mesh.checkCollisions = true;
       }
     });
@@ -32,14 +38,18 @@ Game = function (canvasId) {
     // Récuperer le ratio par les fps
     _this.fps = Math.round(1000 / engine.getDeltaTime());
 
-    // Checker le mouvement du joueur en lui envoyant le ratio de déplacement
-    _player._checkMove((_this.fps) / 60);
+    if (typeof _player.playerBox !== 'undefined') {
+      // Checker le mouvement du joueur en lui envoyant le ratio de déplacement
+      _player._checkMove((_this.fps) / 60);
+    }
 
     _this.scene.render();
 
-    // Si launchBullets est a true, on tire
-    if (_player.camera.weapons.launchBullets === true) {
-      _player.camera.weapons.launchFire();
+    if (typeof _player.playerBox !== 'undefined') {
+      // Si launchBullets est a true, on tire
+      if (_player.camera.weapons.launchBullets === true) {
+        _player.camera.weapons.launchFire();
+      }
     }
 
   });
