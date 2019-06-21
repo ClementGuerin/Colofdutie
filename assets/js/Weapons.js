@@ -19,7 +19,7 @@ Weapons = function (Player) {
         mesh.checkCollisions = false;
         mesh.isPickable = false;
         _this.rocketLauncher = mesh;
-        _this.rocketLauncher.parent = Player.camera;
+        _this.rocketLauncher.parent = Player.playerBox;
         _this.rocketLauncher.position = new BABYLON.Vector3(0, -0.5, 1);
         _this.rocketLauncher.rotation.y = degToRad(90);
       }

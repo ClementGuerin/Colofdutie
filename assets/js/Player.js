@@ -19,6 +19,8 @@ Player = function (game, canvas) {
   // La hauteur de saut
   this.jumpHeight = 3.5;
 
+  this.cameraView = 0;
+
   // Init camera
   this._initCamera(this.game.scene, canvas);
 
@@ -46,6 +48,30 @@ Player = function (game, canvas) {
           // plus la variable jumpHeight
           _this.jumpNeed = _this.playerBox.position.y + _this.jumpHeight;
           _this.canJump = false;
+        }
+        break;
+      case 86:
+        if (_this.cameraView !== 2) {
+          _this.cameraView++
+        } else {
+          _this.cameraView = 0;
+        }
+        switch (_this.cameraView) {
+          case 0:
+            _this.camera.position = new BABYLON.Vector3(0, 0, 0);
+            _this.camera.rotation = new BABYLON.Vector3(0, 0, 0);
+            document.querySelector('.crosshair').style.display = '';
+            break;
+          case 1:
+            _this.camera.position = new BABYLON.Vector3(0, 0, -5);
+            _this.camera.rotation = new BABYLON.Vector3(0, 0, 0);
+            document.querySelector('.crosshair').style.display = 'none';
+            break;
+          case 2:
+            _this.camera.position = new BABYLON.Vector3(0, 0, 10);
+            _this.camera.rotation = new BABYLON.Vector3(0, degToRad(180), 0);
+            document.querySelector('.crosshair').style.display = 'none';
+            break;
         }
         break;
     }
@@ -194,7 +220,6 @@ Player.prototype = {
           case 'Head':
             _this.head = mesh;
             _this.head.position.y = 0.544;
-            // _this.camera.parent = _this.head;
             _this.camera.rotation = new BABYLON.Vector3(0, degToRad(0), 0);
             _this.camera.position.y -= 0.25;
             break;
