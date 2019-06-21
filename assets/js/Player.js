@@ -178,16 +178,14 @@ Player.prototype = {
       depth: 1.6
     }, scene);
     this.playerBox.position = new BABYLON.Vector3(0, 1.28, 0);
-    console.log(this.playerBox, 'playerBox');
     let playerBoxMaterial = new BABYLON.StandardMaterial("playerBoxMaterial", scene);
-    playerBoxMaterial.alpha = 0.1;
+    playerBoxMaterial.alpha = 0;
     this.playerBox.material = playerBoxMaterial;
     this.playerBox.applyGravity = true;
     this.originHeight = this.playerBox.position.clone();
 
 
     BABYLON.SceneLoader.ImportMesh(['PlayerModel'], "./assets/models/player/", "PlayerModelScene.gltf", scene, function (meshes) {
-      console.log(meshes, 'meshes');
       meshes.forEach(mesh => {
         mesh.rotationQuaternion = null;
         // mesh.position = new BABYLON.Vector3(0, 0, 0);
@@ -198,7 +196,6 @@ Player.prototype = {
             _this.head.position.y = 0.544;
             // _this.camera.parent = _this.head;
             _this.camera.rotation = new BABYLON.Vector3(0, degToRad(0), 0);
-            console.log(_this.camera.rotation);
             _this.camera.position.y -= 0.25;
             break;
           case 'Arm-Left':
@@ -287,7 +284,17 @@ Player.prototype = {
       // On vérifie si le joueur a atteind la hauteur désiré
       var rayPlayer = new BABYLON.Ray(this.playerBox.position, new BABYLON.Vector3(0, 1, 0));
       var distPlayer = this.game.scene.pickWithRay(rayPlayer, function (item) {
-        if (item.name == "Head" || item.id == "Arm-Left" || item.id == "Arm-Right" || item.id == 'Chest' || item.id == "Leg-Left" || item.id == "Leg-Right" || item.id == 'playerBox')
+        if (item.name == "Head" ||
+          item.id == "Arm-Left" ||
+          item.id == "Arm-Right" ||
+          item.id == 'Chest' ||
+          item.id == "Leg-Left" ||
+          item.id == "Leg-Right" ||
+          item.id == 'playerBox' ||
+          item.id == "Weapon_primitive0" ||
+          item.id == "Weapon_primitive1" ||
+          item.id == "Weapon_primitive2" ||
+          item.id == "WeaponBox")
           return false;
         else
           return true;
@@ -304,16 +311,23 @@ Player.prototype = {
       // On regarde quel est le premier objet qu'on touche
       // On exclue tout les mesh qui appartiennent au joueur
       var distPlayer = this.game.scene.pickWithRay(rayPlayer, function (item) {
-        if (item.name == "Head" || item.id == "Arm-Left" || item.id == "Arm-Right" || item.id == 'Chest' || item.id == "Leg-Left" || item.id == "Leg-Right" || item.id == 'playerBox')
+        if (item.name == "Head" ||
+          item.id == "Arm-Left" ||
+          item.id == "Arm-Right" ||
+          item.id == 'Chest' ||
+          item.id == "Leg-Left" ||
+          item.id == "Leg-Right" ||
+          item.id == 'playerBox' ||
+          item.id == "Weapon_primitive0" ||
+          item.id == "Weapon_primitive1" ||
+          item.id == "Weapon_primitive2" ||
+          item.id == "WeaponBox")
           return false;
         else
           return true;
       });
 
       var targetHeight = this.originHeight.y;
-
-      // console.log(targetHeight);
-      // 1.01051241727804
 
       if (distPlayer.distance <= targetHeight) {
         if (!this.canJump) {

@@ -10,7 +10,23 @@ Weapons = function (Player) {
   this.topPositionY = -0.5;
 
   // Créons notre arme
-  this.rocketLauncher = this.newWeapon(Player);
+  this.rocketLauncher = null;
+
+  BABYLON.SceneLoader.ImportMesh(["WeaponBox"], "./assets/models/weapon/", "Weapon.gltf", Player.game.scene, function (meshes, particleSystems, skeletons) {
+    console.log(meshes, 'dsfdgdfg');
+    meshes.forEach(mesh => {
+      if (mesh.id == 'WeaponBox') {
+        mesh.rotationQuaternion = null;
+        mesh.checkCollisions = false;
+        mesh.isPickable = false;
+        _this.rocketLauncher = mesh;
+        _this.rocketLauncher.parent = Player.camera;
+        _this.rocketLauncher.position = new BABYLON.Vector3(0, -0.5, 1);
+        _this.rocketLauncher.rotation.y = degToRad(90);
+        console.log(_this.rocketLauncher, 'plop weapon');
+      }
+    });
+  });
 
   // Cadence de tir
   this.fireRate = 100;
@@ -40,31 +56,6 @@ Weapons = function (Player) {
 };
 
 Weapons.prototype = {
-  newWeapon: function (Player) {
-    var newWeapon;
-    newWeapon = BABYLON.Mesh.CreateBox('rocketLauncher', 0.5, Player.game.scene);
-
-    // Nous faisons en sorte d'avoir une arme d'apparence plus longue que large
-    newWeapon.scaling = new BABYLON.Vector3(0.5, 0.5, 2);
-
-    // On l'associe à la caméra pour qu'il bouge de la même facon
-    newWeapon.parent = Player.camera;
-
-    // On positionne le mesh APRES l'avoir attaché à la caméra
-    newWeapon.position = this.bottomPosition.clone();
-    newWeapon.position.z = 1;
-    newWeapon.position.y = this.topPositionY;
-    newWeapon.rotation.z = 1;
-
-    // Ajoutons un material Rouge pour le rendre plus visible
-    var materialWeapon = new BABYLON.StandardMaterial('rocketLauncherMat', Player.game.scene);
-    materialWeapon.diffuseColor = new BABYLON.Color3(1, 0, 0);
-    materialWeapon.backFaceCulling = true;
-
-    newWeapon.material = materialWeapon;
-
-    return newWeapon
-  },
   fire: function (pickInfo) {
     this.launchBullets = true;
   },
@@ -154,17 +145,15 @@ Weapons.prototype = {
   weaponScope: function (Player, state) {
     if (state) {
       Player.game.scene.meshes.forEach(mesh => {
-        if (mesh.name === 'rocketLauncher') {
-          mesh.position.x = 0;
-          mesh.rotation.z = 0;
+        if (mesh.name === 'WeaponBox') {
+          mesh.position.y = -0.5;
         }
       });
 
     } else {
       Player.game.scene.meshes.forEach(mesh => {
-        if (mesh.name === 'rocketLauncher') {
-          mesh.position.x = 0.6;
-          mesh.rotation.z = 1;
+        if (mesh.name === 'WeaponBox') {
+          // mesh.position.y = -0.25;
         }
       })
     }

@@ -17,7 +17,10 @@ Game = function (canvasId) {
   BABYLON.SceneLoader.Append("./assets/scene/map/", "Plopmap.gltf", this.scene, function (scene) {
     scene.meshes.forEach(mesh => {
       //console.log(mesh);
-      if (mesh.id !== "rocketLauncher" &&
+      if (mesh.id !== "WeaponBox" &&
+        mesh.id !== "Weapon_primitive0" &&
+        mesh.id !== "Weapon_primitive1" &&
+        mesh.id !== "Weapon_primitive2" &&
         mesh.id !== "Head" &&
         mesh.id !== "Arm-Left" &&
         mesh.id !== "Arm-Right" &&
